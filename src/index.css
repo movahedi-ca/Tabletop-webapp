@@ -2,44 +2,70 @@
 
 @layer base {
   :root {
-    --slate-dark: #0B101B;
-    --slate-card: #131D2F;
-    --slate-border: #1E2D4A;
-    --slate-elevated: #1B2840;
-    --cyber-cyan: #00F0FF;
-    --cyber-blue: #38BDF8;
-    --cyber-indigo: #6366F1;
-    --alert-red: #EF4444;
-    --warning-amber: #F59E0B;
-    --contained-green: #10B981;
-    --text-primary: #F8FAFC;
-    --text-secondary: #94A3B8;
-    --text-muted: #64748B;
+    /* movahedi.ca design tokens (dark default) */
+    --tt-background: #020617; /* navy-950 */
+    --tt-card: #0f172a; /* navy-900 */
+    --tt-elevated: #111827;
+    --tt-border: #1e293b; /* slate-800 */
+    --tt-primary: #14b8a6; /* teal-500 */
+    --tt-primary-bright: #2dd4bf; /* teal-400 */
+    --tt-primary-soft: #5eead4; /* teal-300 */
+    --tt-primary-deep: #042f2e; /* teal-950 */
+    --tt-danger: #f87171;
+    --tt-warning: #fbbf24;
+    --tt-success: #34d399;
+    --tt-text-primary: #f8fafc;
+    --tt-text-secondary: #94a3b8;
+    --tt-text-muted: #64748b;
+
+    /* legacy aliases kept for any missed references */
+    --slate-dark: #020617;
+    --slate-card: #0f172a;
+    --slate-border: #1e293b;
+    --slate-elevated: #111827;
+    --cyber-cyan: #2dd4bf;
+    --cyber-blue: #5eead4;
+    --cyber-indigo: #14b8a6;
+    --alert-red: #f87171;
+    --warning-amber: #fbbf24;
+    --contained-green: #34d399;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
   }
 
   body {
-    background-color: #0B101B;
-    color: #F8FAFC;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #020617;
+    color: #f8fafc;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
   code, pre, .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .tnum {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-/* Custom cyber scrollbar */
+/* Slim scrollbar matching site chrome */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B101B;
+  background: #020617;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1E2D4A;
+  background: #1e293b;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #00F0FF;
+  background: #14b8a6;
 }

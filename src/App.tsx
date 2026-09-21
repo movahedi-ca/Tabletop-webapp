@@ -10,6 +10,7 @@ import { HistoryScreen } from './screens/HistoryScreen';
 import { AdvisoryScreen } from './screens/AdvisoryScreen';
 import { BottomNavBar } from './components/BottomNavBar';
 import { DesktopNavBar } from './components/DesktopNavBar';
+import { SiteHeader, SiteFooter } from './components/SiteChrome';
 
 const AppContent: React.FC = () => {
   const { currentScreen, navigateTo } = useSimulation();
@@ -44,7 +45,8 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B101B] text-[#F8FAFC] flex flex-col justify-between selection:bg-[#00F0FF]/30 selection:text-[#00F0FF]">
+    <div className="min-h-screen bg-[#020617] text-[#F8FAFC] flex flex-col justify-between selection:bg-[#2dd4bf]/30 selection:text-[#2dd4bf]">
+      <SiteHeader />
       <DesktopNavBar currentScreen={currentScreen} onNavigate={navigateTo} />
 
       <main className="flex-1 w-full">
@@ -54,6 +56,7 @@ const AppContent: React.FC = () => {
       {showBottomBar && (
         <BottomNavBar currentScreen={currentScreen} onNavigate={navigateTo} />
       )}
+      <SiteFooter />
     </div>
   );
 };

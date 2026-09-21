@@ -52,15 +52,15 @@ export const HistoryScreen: React.FC = () => {
     switch (grade) {
       case 'A+':
       case 'A':
-        return 'text-[#10B981] bg-[#10B981]/15 border-[#10B981]/30';
+        return 'text-[#34d399] bg-[#34d399]/15 border-[#34d399]/30';
       case 'B':
-        return 'text-[#00F0FF] bg-[#00F0FF]/15 border-[#00F0FF]/30';
+        return 'text-[#2dd4bf] bg-[#2dd4bf]/15 border-[#2dd4bf]/30';
       case 'C':
-        return 'text-[#F59E0B] bg-[#F59E0B]/15 border-[#F59E0B]/30';
+        return 'text-[#fbbf24] bg-[#fbbf24]/15 border-[#fbbf24]/30';
       case 'D':
       case 'F':
       default:
-        return 'text-[#EF4444] bg-[#EF4444]/15 border-[#EF4444]/30';
+        return 'text-[#f87171] bg-[#f87171]/15 border-[#f87171]/30';
     }
   };
 
@@ -77,13 +77,13 @@ export const HistoryScreen: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#0B101B] text-[#F8FAFC] pb-24 md:pb-12 px-4 md:px-8 pt-4 md:pt-6 max-w-7xl mx-auto">
+    <div className="w-full bg-[#020617] text-[#F8FAFC] pb-24 md:pb-12 px-4 md:px-8 pt-4 md:pt-6 max-w-7xl mx-auto">
       {/* Top Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-[#22334D] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-[#1e293b] pb-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-[#6366F1]" />
-            <span className="text-[10px] font-extrabold tracking-widest text-[#00F0FF] uppercase">
+            <span className="w-2 h-2 rounded-full bg-[#14b8a6]" />
+            <span className="text-[10px] font-extrabold tracking-widest text-[#2dd4bf] uppercase">
               TABLETOP DRILL ARCHIVES & AUDIT LOGS
             </span>
           </div>
@@ -101,7 +101,7 @@ export const HistoryScreen: React.FC = () => {
               type="button"
               onClick={handleExportAll}
               data-testid="export_history_button"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#131D2E] hover:bg-[#1E293B] border border-[#22334D] text-xs font-bold text-[#38BDF8] transition-all"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#0f172a] hover:bg-[#1E293B] border border-[#1e293b] text-xs font-bold text-[#5eead4] transition-all"
             >
               <Download className="w-3.5 h-3.5" />
               <span>EXPORT ARCHIVES</span>
@@ -111,7 +111,7 @@ export const HistoryScreen: React.FC = () => {
               type="button"
               onClick={() => setShowClearConfirm(true)}
               data-testid="clear_history_button"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#EF4444]/10 hover:bg-[#EF4444]/20 border border-[#EF4444]/30 text-[#EF4444] text-xs font-bold transition-all"
+              className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#f87171]/10 hover:bg-[#f87171]/20 border border-[#f87171]/30 text-[#f87171] text-xs font-bold transition-all"
             >
               <Trash2 className="w-3.5 h-3.5" />
               <span>CLEAR LOGS</span>
@@ -123,27 +123,27 @@ export const HistoryScreen: React.FC = () => {
       {/* Summary KPI Ribbon */}
       {pastDrills.length > 0 && (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
             <span className="text-[10px] font-bold text-[#64748B] uppercase block mb-1">
               TOTAL DRILLS EXECUTED
             </span>
-            <span className="text-xl md:text-3xl font-black font-mono text-[#00F0FF]">
+            <span className="text-xl md:text-3xl font-black font-mono text-[#2dd4bf]">
               {pastDrills.length}
             </span>
             <span className="text-[10px] text-[#94A3B8] mt-0.5 block">Logged sessions</span>
           </div>
 
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
             <span className="text-[10px] font-bold text-[#64748B] uppercase block mb-1">
               MEAN READINESS SCORE
             </span>
             <span
               className={`text-xl md:text-3xl font-black font-mono ${
                 avgReadiness >= 80
-                  ? 'text-[#10B981]'
+                  ? 'text-[#34d399]'
                   : avgReadiness >= 60
-                  ? 'text-[#F59E0B]'
-                  : 'text-[#EF4444]'
+                  ? 'text-[#fbbf24]'
+                  : 'text-[#f87171]'
               }`}
             >
               {avgReadiness}%
@@ -151,21 +151,21 @@ export const HistoryScreen: React.FC = () => {
             <span className="text-[10px] text-[#94A3B8] mt-0.5 block">Overall capability</span>
           </div>
 
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
             <span className="text-[10px] font-bold text-[#64748B] uppercase block mb-1">
               BEST RECORDED GRADE
             </span>
-            <span className="text-xl md:text-3xl font-black font-mono text-[#10B981]">
+            <span className="text-xl md:text-3xl font-black font-mono text-[#34d399]">
               {bestGrade}
             </span>
             <span className="text-[10px] text-[#94A3B8] mt-0.5 block">Peak crisis leadership</span>
           </div>
 
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
             <span className="text-[10px] font-bold text-[#64748B] uppercase block mb-1">
               TOTAL EXPOSURE MITIGATED
             </span>
-            <span className="text-base md:text-2xl font-bold font-mono text-[#F59E0B] truncate block">
+            <span className="text-base md:text-2xl font-bold font-mono text-[#fbbf24] truncate block">
               {formatCurrency(totalExposure)}
             </span>
             <span className="text-[10px] text-[#94A3B8] mt-0.5 block">Cumulative losses</span>
@@ -175,8 +175,8 @@ export const HistoryScreen: React.FC = () => {
 
       {/* Empty State */}
       {pastDrills.length === 0 ? (
-        <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-8 md:p-12 text-center shadow-lg max-w-xl mx-auto">
-          <div className="w-16 h-16 rounded-2xl bg-[#00F0FF]/10 border border-[#00F0FF]/30 flex items-center justify-center text-[#00F0FF] mx-auto mb-4">
+        <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-8 md:p-12 text-center shadow-lg max-w-xl mx-auto">
+          <div className="w-16 h-16 rounded-2xl bg-[#2dd4bf]/10 border border-[#2dd4bf]/30 flex items-center justify-center text-[#2dd4bf] mx-auto mb-4">
             <Shield className="w-8 h-8" />
           </div>
 
@@ -189,7 +189,7 @@ export const HistoryScreen: React.FC = () => {
             type="button"
             onClick={() => navigateTo(Screen.HOME)}
             data-testid="empty_state_start_drill_button"
-            className="w-full sm:w-auto px-6 py-3.5 bg-[#00F0FF] hover:bg-[#00F0FF]/90 text-[#001F2B] font-extrabold text-xs tracking-wider rounded-xl inline-flex items-center justify-center gap-2 transition-all shadow-md"
+            className="w-full sm:w-auto px-6 py-3.5 bg-[#2dd4bf] hover:bg-[#2dd4bf]/90 text-[#042f2e] font-extrabold text-xs tracking-wider rounded-xl inline-flex items-center justify-center gap-2 transition-all shadow-md"
           >
             <Play className="w-4 h-4 fill-current" />
             <span>LAUNCH FIRST INCIDENT DRILL</span>
@@ -206,7 +206,7 @@ export const HistoryScreen: React.FC = () => {
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
               placeholder="Search historical records by scenario title or grade..."
-              className="w-full bg-[#131D2E] border border-[#22334D] rounded-xl pl-9 pr-3 py-2 text-xs text-[#F8FAFC] placeholder-[#64748B] focus:outline-none focus:border-[#00F0FF]/60 transition-colors"
+              className="w-full bg-[#0f172a] border border-[#1e293b] rounded-xl pl-9 pr-3 py-2 text-xs text-[#F8FAFC] placeholder-[#64748B] focus:outline-none focus:border-[#2dd4bf]/60 transition-colors"
             />
           </div>
 
@@ -215,7 +215,7 @@ export const HistoryScreen: React.FC = () => {
             {filteredDrills.map((record) => (
               <div
                 key={record.id}
-                className="bg-[#131D2E] border border-[#22334D] hover:border-[#00F0FF]/40 rounded-2xl p-5 shadow-md transition-all flex flex-col justify-between"
+                className="bg-[#0f172a] border border-[#1e293b] hover:border-[#2dd4bf]/40 rounded-2xl p-5 shadow-md transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-3">
@@ -242,7 +242,7 @@ export const HistoryScreen: React.FC = () => {
                       type="button"
                       onClick={() => deletePastDrill(record.id)}
                       data-testid={`delete_record_button_${record.id}`}
-                      className="text-[#64748B] hover:text-[#EF4444] p-1.5 rounded-lg hover:bg-[#EF4444]/10 transition-colors shrink-0"
+                      className="text-[#64748B] hover:text-[#f87171] p-1.5 rounded-lg hover:bg-[#f87171]/10 transition-colors shrink-0"
                       title="Delete record"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -252,26 +252,26 @@ export const HistoryScreen: React.FC = () => {
 
                 <div>
                   {/* Record Metrics */}
-                  <div className="grid grid-cols-4 gap-2 pt-3 border-t border-[#22334D] text-xs font-mono mb-2">
+                  <div className="grid grid-cols-4 gap-2 pt-3 border-t border-[#1e293b] text-xs font-mono mb-2">
                     <div>
                       <span className="text-[9px] text-[#64748B] uppercase block">SCORE</span>
-                      <span className="font-bold text-[#00F0FF] text-sm">{record.totalScore}%</span>
+                      <span className="font-bold text-[#2dd4bf] text-sm">{record.totalScore}%</span>
                     </div>
                     <div>
                       <span className="text-[9px] text-[#64748B] uppercase block">COST</span>
-                      <span className="font-bold text-[#F59E0B] truncate block text-xs md:text-sm">
+                      <span className="font-bold text-[#fbbf24] truncate block text-xs md:text-sm">
                         {formatCurrency(record.finalCostUsd || 0)}
                       </span>
                     </div>
                     <div>
                       <span className="text-[9px] text-[#64748B] uppercase block">TIME</span>
-                      <span className="font-bold text-[#38BDF8] text-sm">
+                      <span className="font-bold text-[#5eead4] text-sm">
                         {record.totalTimeHours || 0}h
                       </span>
                     </div>
                     <div>
                       <span className="text-[9px] text-[#64748B] uppercase block">TRUST</span>
-                      <span className="font-bold text-[#10B981] text-sm">
+                      <span className="font-bold text-[#34d399] text-sm">
                         {record.publicTrustPercent}%
                       </span>
                     </div>
@@ -286,8 +286,8 @@ export const HistoryScreen: React.FC = () => {
       {/* Clear Confirmation Dialog */}
       {showClearConfirm && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="w-full max-w-sm bg-[#131D2E] border border-[#EF4444]/40 rounded-2xl p-5 shadow-2xl">
-            <div className="flex items-center gap-2 text-[#EF4444] mb-2">
+          <div className="w-full max-w-sm bg-[#0f172a] border border-[#f87171]/40 rounded-2xl p-5 shadow-2xl">
+            <div className="flex items-center gap-2 text-[#f87171] mb-2">
               <AlertCircle className="w-5 h-5" />
               <h3 className="text-base font-bold text-[#F8FAFC]">Clear All Incident Archives?</h3>
             </div>
@@ -298,7 +298,7 @@ export const HistoryScreen: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowClearConfirm(false)}
-                className="flex-1 py-2.5 rounded-xl bg-[#0B101B] border border-[#22334D] text-xs font-semibold text-[#94A3B8] hover:text-[#F8FAFC]"
+                className="flex-1 py-2.5 rounded-xl bg-[#020617] border border-[#1e293b] text-xs font-semibold text-[#94A3B8] hover:text-[#F8FAFC]"
               >
                 Cancel
               </button>
@@ -308,7 +308,7 @@ export const HistoryScreen: React.FC = () => {
                   setShowClearConfirm(false);
                   clearAllPastDrills();
                 }}
-                className="flex-1 py-2.5 rounded-xl bg-[#EF4444] text-[#F8FAFC] text-xs font-bold hover:bg-[#EF4444]/90"
+                className="flex-1 py-2.5 rounded-xl bg-[#f87171] text-[#F8FAFC] text-xs font-bold hover:bg-[#f87171]/90"
               >
                 Clear All
               </button>

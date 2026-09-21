@@ -25,11 +25,11 @@ export const AarReportScreen: React.FC = () => {
 
   if (!afterActionReport) {
     return (
-      <div className="min-h-screen bg-[#0B101B] flex flex-col items-center justify-center p-4">
+      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center p-4">
         <p className="text-sm text-[#94A3B8] mb-4">No After-Action Report available.</p>
         <button
           onClick={returnToHome}
-          className="px-4 py-2 bg-[#00F0FF] text-[#001F2B] font-bold rounded-lg text-xs"
+          className="px-4 py-2 bg-[#2dd4bf] text-[#042f2e] font-bold rounded-lg text-xs"
         >
           Return to Command Center
         </button>
@@ -41,28 +41,28 @@ export const AarReportScreen: React.FC = () => {
     switch (grade) {
       case 'A+':
       case 'A':
-        return 'text-[#10B981] bg-[#10B981]/15 border-[#10B981]/40 shadow-[0_0_15px_rgba(16,185,129,0.3)]';
+        return 'text-[#34d399] bg-[#34d399]/15 border-[#34d399]/40 shadow-[0_0_15px_rgba(52,211,153,0.3)]';
       case 'B':
-        return 'text-[#00F0FF] bg-[#00F0FF]/15 border-[#00F0FF]/40 shadow-[0_0_15px_rgba(0,240,255,0.3)]';
+        return 'text-[#2dd4bf] bg-[#2dd4bf]/15 border-[#2dd4bf]/40 shadow-[0_0_15px_rgba(45,212,191,0.3)]';
       case 'C':
-        return 'text-[#F59E0B] bg-[#F59E0B]/15 border-[#F59E0B]/40 shadow-[0_0_15px_rgba(245,158,11,0.3)]';
+        return 'text-[#fbbf24] bg-[#fbbf24]/15 border-[#fbbf24]/40 shadow-[0_0_15px_rgba(251,191,36,0.3)]';
       case 'D':
       case 'F':
       default:
-        return 'text-[#EF4444] bg-[#EF4444]/15 border-[#EF4444]/40 shadow-[0_0_15px_rgba(239,68,68,0.3)]';
+        return 'text-[#f87171] bg-[#f87171]/15 border-[#f87171]/40 shadow-[0_0_15px_rgba(248,113,113,0.3)]';
     }
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 80) return 'text-[#10B981]';
-    if (score >= 60) return 'text-[#F59E0B]';
-    return 'text-[#EF4444]';
+    if (score >= 80) return 'text-[#34d399]';
+    if (score >= 60) return 'text-[#fbbf24]';
+    return 'text-[#f87171]';
   };
 
   const getBarColor = (score: number) => {
-    if (score >= 80) return 'bg-[#10B981]';
-    if (score >= 60) return 'bg-[#F59E0B]';
-    return 'bg-[#EF4444]';
+    if (score >= 80) return 'bg-[#34d399]';
+    if (score >= 60) return 'bg-[#fbbf24]';
+    return 'bg-[#f87171]';
   };
 
   const competencyLabels: Record<string, string> = {
@@ -103,11 +103,11 @@ export const AarReportScreen: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#0B101B] text-[#F8FAFC] pb-28 md:pb-16 px-4 md:px-8 pt-4 md:pt-6 max-w-7xl mx-auto">
+    <div className="w-full bg-[#020617] text-[#F8FAFC] pb-28 md:pb-16 px-4 md:px-8 pt-4 md:pt-6 max-w-7xl mx-auto">
       {/* Top Banner & Action Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-[#22334D] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-[#1e293b] pb-4">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#131D2E] border border-[#22334D] text-[#00F0FF] text-[10px] font-black tracking-widest uppercase mb-1.5">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0f172a] border border-[#1e293b] text-[#2dd4bf] text-[10px] font-black tracking-widest uppercase mb-1.5">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>INCIDENT DEBRIEF COMPLETE // OFFICIAL AUDIT REPORT</span>
           </div>
@@ -125,7 +125,7 @@ export const AarReportScreen: React.FC = () => {
             type="button"
             onClick={handleExportJson}
             data-testid="export_aar_json_button"
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#131D2E] hover:bg-[#1E293B] border border-[#22334D] text-xs font-bold text-[#38BDF8] transition-all"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#0f172a] hover:bg-[#1E293B] border border-[#1e293b] text-xs font-bold text-[#5eead4] transition-all"
             title="Export JSON audit record"
           >
             <Download className="w-3.5 h-3.5" />
@@ -136,7 +136,7 @@ export const AarReportScreen: React.FC = () => {
             type="button"
             onClick={handlePrint}
             data-testid="print_aar_button"
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#131D2E] hover:bg-[#1E293B] border border-[#22334D] text-xs font-bold text-[#CBD5E1] transition-all"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#0f172a] hover:bg-[#1E293B] border border-[#1e293b] text-xs font-bold text-[#CBD5E1] transition-all"
             title="Print or save as PDF"
           >
             <Printer className="w-3.5 h-3.5" />
@@ -147,7 +147,7 @@ export const AarReportScreen: React.FC = () => {
             type="button"
             onClick={returnToHome}
             data-testid="aar_return_home_top_button"
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#00F0FF] hover:bg-[#00F0FF]/90 text-[#001F2B] text-xs font-black tracking-wide transition-all shadow-md"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#2dd4bf] hover:bg-[#2dd4bf]/90 text-[#042f2e] text-xs font-black tracking-wide transition-all shadow-md"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>RETURN TO COMMAND</span>
@@ -157,42 +157,42 @@ export const AarReportScreen: React.FC = () => {
 
       {/* Outcome Telemetry Ribbon (4 KPI Cards) */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
-        <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
+        <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
           <div className="flex items-center gap-1.5 text-[#64748B] text-[10px] font-bold uppercase mb-1">
-            <DollarSign className="w-4 h-4 text-[#F59E0B]" />
+            <DollarSign className="w-4 h-4 text-[#fbbf24]" />
             <span>FINAL COST EXPOSURE</span>
           </div>
-          <span className="text-lg md:text-2xl font-black font-mono text-[#F59E0B] block">
+          <span className="text-lg md:text-2xl font-black font-mono text-[#fbbf24] block">
             {formatCurrency(afterActionReport.finalCostUsd ?? afterActionReport.financialCostUsd ?? 0)}
           </span>
           <span className="text-[10px] text-[#94A3B8] mt-0.5 block">Direct losses & mitigation</span>
         </div>
 
-        <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
+        <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
           <div className="flex items-center gap-1.5 text-[#64748B] text-[10px] font-bold uppercase mb-1">
-            <Clock className="w-4 h-4 text-[#38BDF8]" />
+            <Clock className="w-4 h-4 text-[#5eead4]" />
             <span>CONTAINMENT WINDOW</span>
           </div>
-          <span className="text-lg md:text-2xl font-black font-mono text-[#38BDF8] block">
+          <span className="text-lg md:text-2xl font-black font-mono text-[#5eead4] block">
             {afterActionReport.totalTimeHours ?? afterActionReport.timeElapsedHours ?? 0} Hours
           </span>
           <span className="text-[10px] text-[#94A3B8] mt-0.5 block">Time to incident closure</span>
         </div>
 
-        <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
+        <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
           <div className="flex items-center gap-1.5 text-[#64748B] text-[10px] font-bold uppercase mb-1">
-            <Shield className="w-4 h-4 text-[#10B981]" />
+            <Shield className="w-4 h-4 text-[#34d399]" />
             <span>RETAINED PUBLIC TRUST</span>
           </div>
-          <span className="text-lg md:text-2xl font-black font-mono text-[#10B981] block">
+          <span className="text-lg md:text-2xl font-black font-mono text-[#34d399] block">
             {afterActionReport.publicTrustPercent ?? 90}%
           </span>
           <span className="text-[10px] text-[#94A3B8] mt-0.5 block">Stakeholder sentiment</span>
         </div>
 
-        <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
+        <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
           <div className="flex items-center gap-1.5 text-[#64748B] text-[10px] font-bold uppercase mb-1">
-            <Gavel className="w-4 h-4 text-[#EF4444]" />
+            <Gavel className="w-4 h-4 text-[#f87171]" />
             <span>DEFENSIBLE LEGAL RISK</span>
           </div>
           <span className="text-base md:text-xl font-bold font-mono text-[#F8FAFC] block">
@@ -207,8 +207,8 @@ export const AarReportScreen: React.FC = () => {
         {/* Left Column: Grade, Competencies & Lessons (6 of 12 cols) */}
         <div className="lg:col-span-6 space-y-5">
           {/* Grade & Overall Score Card */}
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-5 relative overflow-hidden shadow-xl">
-            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#00F0FF] via-[#6366F1] to-[#10B981]" />
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-5 relative overflow-hidden shadow-xl">
+            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#2dd4bf] via-[#14b8a6] to-[#34d399]" />
 
             <div className="flex items-center justify-between gap-6">
               {/* Grade Badge */}
@@ -245,9 +245,9 @@ export const AarReportScreen: React.FC = () => {
           </div>
 
           {/* Competencies Scorecard */}
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-5 shadow-md">
-            <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-[#22334D]">
-              <span className="text-xs font-black tracking-widest text-[#00F0FF] uppercase">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-5 shadow-md">
+            <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-[#1e293b]">
+              <span className="text-xs font-black tracking-widest text-[#2dd4bf] uppercase">
                 INCIDENT COMMAND COMPETENCY AUDIT
               </span>
               <span className="text-[10px] text-[#64748B] font-mono">BENCHMARK: ICS-300</span>
@@ -265,7 +265,7 @@ export const AarReportScreen: React.FC = () => {
                       <span className="text-[#F8FAFC] font-semibold">{label}</span>
                       <span className={`font-mono font-bold ${getScoreColor(val)}`}>{val}%</span>
                     </div>
-                    <div className="w-full bg-[#0B101B] h-2 rounded-full overflow-hidden border border-[#22334D]/60">
+                    <div className="w-full bg-[#020617] h-2 rounded-full overflow-hidden border border-[#1e293b]/60">
                       <div
                         className={`h-full rounded-full transition-all duration-700 ${getBarColor(val)}`}
                         style={{ width: `${val}%` }}
@@ -278,8 +278,8 @@ export const AarReportScreen: React.FC = () => {
           </div>
 
           {/* Executive Summary Findings */}
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-5 shadow-md">
-            <span className="text-xs font-black tracking-widest text-[#38BDF8] uppercase block mb-2.5">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-5 shadow-md">
+            <span className="text-xs font-black tracking-widest text-[#5eead4] uppercase block mb-2.5">
               EXECUTIVE FINDINGS & DOCTRINE EVALUATION
             </span>
             <p className="text-xs md:text-sm text-[#CBD5E1] leading-relaxed">
@@ -288,14 +288,14 @@ export const AarReportScreen: React.FC = () => {
           </div>
 
           {/* Key Doctrine Lessons */}
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-5 shadow-md">
-            <span className="text-xs font-black tracking-widest text-[#10B981] uppercase block mb-3">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-5 shadow-md">
+            <span className="text-xs font-black tracking-widest text-[#34d399] uppercase block mb-3">
               KEY DOCTRINE LESSONS LEARNED
             </span>
             <div className="space-y-2.5">
               {keyTakeaways.map((lesson, idx) => (
                 <div key={idx} className="flex items-start gap-2.5 text-xs text-[#CBD5E1]">
-                  <CheckCircle2 className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                   <span className="leading-relaxed">{lesson}</span>
                 </div>
               ))}
@@ -303,10 +303,10 @@ export const AarReportScreen: React.FC = () => {
           </div>
 
           {/* Movahedi Strategic Incident Advisory Card */}
-          <div className="bg-gradient-to-br from-[#131D2E] to-[#1E293B] border border-[#6366F1]/50 rounded-2xl p-5 shadow-lg">
+          <div className="bg-gradient-to-br from-[#0f172a] to-[#1E293B] border border-[#14b8a6]/50 rounded-2xl p-5 shadow-lg">
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4 text-[#00F0FF]" />
-              <span className="text-[10px] font-extrabold tracking-widest text-[#00F0FF] uppercase">
+              <Sparkles className="w-4 h-4 text-[#2dd4bf]" />
+              <span className="text-[10px] font-extrabold tracking-widest text-[#2dd4bf] uppercase">
                 POST-INCIDENT GOVERNANCE ADVISORY
               </span>
             </div>
@@ -321,7 +321,7 @@ export const AarReportScreen: React.FC = () => {
                 href={MovahediData.DISCOVERY_CALL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-2.5 bg-[#00F0FF] hover:bg-[#00F0FF]/90 text-[#001F2B] rounded-xl text-xs font-extrabold flex items-center justify-center gap-1.5 transition-all shadow-md"
+                className="flex-1 py-2.5 bg-[#2dd4bf] hover:bg-[#2dd4bf]/90 text-[#042f2e] rounded-xl text-xs font-extrabold flex items-center justify-center gap-1.5 transition-all shadow-md"
               >
                 <span>Book Advisory Session</span>
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -330,7 +330,7 @@ export const AarReportScreen: React.FC = () => {
                 href={MovahediData.WEBSITE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2.5 bg-transparent hover:bg-[#1E293B] border border-[#22334D] text-[#38BDF8] rounded-xl text-xs font-bold transition-all flex items-center justify-center"
+                className="px-4 py-2.5 bg-transparent hover:bg-[#1E293B] border border-[#1e293b] text-[#5eead4] rounded-xl text-xs font-bold transition-all flex items-center justify-center"
               >
                 <span>movahedi.ca</span>
               </a>
@@ -341,9 +341,9 @@ export const AarReportScreen: React.FC = () => {
         {/* Right Column: Tactical Orders Timeline & Regulatory Audit (6 of 12 cols) */}
         <div className="lg:col-span-6 space-y-5">
           {/* Tactical Orders Timeline */}
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-5 shadow-md">
-            <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-[#22334D]">
-              <span className="text-xs font-black tracking-widest text-[#00F0FF] uppercase">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-5 shadow-md">
+            <div className="flex items-center justify-between mb-4 pb-2.5 border-b border-[#1e293b]">
+              <span className="text-xs font-black tracking-widest text-[#2dd4bf] uppercase">
                 TACTICAL ORDERS CHRONICLE
               </span>
               <span className="text-[10px] font-mono text-[#64748B]">
@@ -355,10 +355,10 @@ export const AarReportScreen: React.FC = () => {
               {(afterActionReport.decisions || afterActionReport.decisionsTimeline || []).map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-4 rounded-xl bg-[#0B101B] border border-[#22334D] relative"
+                  className="p-4 rounded-xl bg-[#020617] border border-[#1e293b] relative"
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-mono font-bold text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded border border-[#00F0FF]/30 uppercase">
+                    <span className="text-[10px] font-mono font-bold text-[#2dd4bf] bg-[#2dd4bf]/10 px-2 py-0.5 rounded border border-[#2dd4bf]/30 uppercase">
                       PHASE {item.phaseNumber} • {item.phaseTitle}
                     </span>
                     <span className="text-[10px] text-[#64748B]">
@@ -368,16 +368,16 @@ export const AarReportScreen: React.FC = () => {
 
                   <h5 className="font-bold text-[#F8FAFC] text-sm mb-1.5">{item.choice.title}</h5>
 
-                  <p className="text-xs text-[#CBD5E1] bg-[#131D2E] p-3 rounded-lg border border-[#22334D]/80 leading-relaxed mb-2.5">
+                  <p className="text-xs text-[#CBD5E1] bg-[#0f172a] p-3 rounded-lg border border-[#1e293b]/80 leading-relaxed mb-2.5">
                     {item.choice.feedbackDoctrine}
                   </p>
 
                   <div className="flex items-center justify-between text-[11px] text-[#64748B] pt-1">
                     <div className="flex items-center gap-3 font-mono">
-                      <span className="text-[#F59E0B]">+{formatCurrency(item.choice.costDeltaUsd)}</span>
+                      <span className="text-[#fbbf24]">+{formatCurrency(item.choice.costDeltaUsd)}</span>
                       <span>+{item.choice.timeDeltaHours}h window</span>
                     </div>
-                    <span className="text-[#38BDF8] font-semibold text-[10px]">
+                    <span className="text-[#5eead4] font-semibold text-[10px]">
                       {item.choice.forensicsImpact || item.choice.forensicResult || 'Preserved'}
                     </span>
                   </div>

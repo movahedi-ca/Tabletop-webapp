@@ -14,17 +14,17 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
       case IncidentSeverity.CRITICAL:
       case IncidentSeverity.DEFCON_1_CRITICAL:
       case IncidentSeverity.CATASTROPHIC:
-        return { label: 'CRITICAL • DEFCON 1', color: 'text-[#EF4444] bg-[#EF4444]/15 border-[#EF4444]/40' };
+        return { label: 'CRITICAL • DEFCON 1', color: 'text-[#f87171] bg-[#f87171]/15 border-[#f87171]/40' };
       case IncidentSeverity.HIGH:
       case IncidentSeverity.DEFCON_2_SEVERE:
         return { label: 'HIGH • DEFCON 2', color: 'text-[#FB923C] bg-[#FB923C]/15 border-[#FB923C]/40' };
       case IncidentSeverity.MEDIUM:
       case IncidentSeverity.DEFCON_3_ELEVATED:
-        return { label: 'MEDIUM • DEFCON 3', color: 'text-[#F59E0B] bg-[#F59E0B]/15 border-[#F59E0B]/40' };
+        return { label: 'MEDIUM • DEFCON 3', color: 'text-[#fbbf24] bg-[#fbbf24]/15 border-[#fbbf24]/40' };
       case IncidentSeverity.LOW:
       case IncidentSeverity.DEFCON_4_GUARDED:
       default:
-        return { label: 'GUARDED • DEFCON 4', color: 'text-[#10B981] bg-[#10B981]/15 border-[#10B981]/40' };
+        return { label: 'GUARDED • DEFCON 4', color: 'text-[#34d399] bg-[#34d399]/15 border-[#34d399]/40' };
     }
   };
 
@@ -36,16 +36,16 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
     <div
       data-testid={`scenario_card_${scenario.id}`}
       onClick={onSelect}
-      className="w-full bg-[#131D2E] hover:bg-[#1A263B] border border-[#22334D] hover:border-[#00F0FF]/50 rounded-xl p-5 transition-all duration-200 cursor-pointer shadow-md flex flex-col justify-between group hover:shadow-[0_4px_20px_rgba(0,240,255,0.08)]"
+      className="w-full bg-[#0f172a] hover:bg-[#0f172a] border border-[#1e293b] hover:border-[#2dd4bf]/50 rounded-xl p-5 transition-all duration-200 cursor-pointer shadow-md flex flex-col justify-between group hover:shadow-[0_4px_20px_rgba(45,212,191,0.08)]"
     >
       <div>
         {/* Top Badges */}
         <div className="flex items-center justify-between gap-2 mb-2.5 flex-wrap">
           <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold text-[#00F0FF] tracking-wider uppercase bg-[#00F0FF]/10 px-2 py-0.5 rounded border border-[#00F0FF]/30">
+            <span className="text-[10px] font-bold text-[#2dd4bf] tracking-wider uppercase bg-[#2dd4bf]/10 px-2 py-0.5 rounded border border-[#2dd4bf]/30">
               {scenario.codename}
             </span>
-            <span className="text-[9px] font-mono text-[#94A3B8] bg-[#0B101B] px-1.5 py-0.5 rounded border border-[#22334D]">
+            <span className="text-[9px] font-mono text-[#94A3B8] bg-[#020617] px-1.5 py-0.5 rounded border border-[#1e293b]">
               {scenario.category}
             </span>
           </div>
@@ -55,7 +55,7 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
         </div>
 
         {/* Title */}
-        <h3 className="text-base font-bold text-[#F8FAFC] group-hover:text-[#00F0FF] transition-colors mb-1.5 leading-snug">
+        <h3 className="text-base font-bold text-[#F8FAFC] group-hover:text-[#2dd4bf] transition-colors mb-1.5 leading-snug">
           {scenario.title}
         </h3>
 
@@ -70,7 +70,7 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
             {systems.slice(0, 2).map((sys) => (
               <span
                 key={sys}
-                className="text-[9px] font-mono text-[#64748B] bg-[#0B101B] px-1.5 py-0.5 rounded border border-[#22334D]"
+                className="text-[9px] font-mono text-[#64748B] bg-[#020617] px-1.5 py-0.5 rounded border border-[#1e293b]"
               >
                 {sys}
               </span>
@@ -78,7 +78,7 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
             {regulatory.slice(0, 2).map((reg) => (
               <span
                 key={reg}
-                className="text-[9px] font-mono text-[#38BDF8] bg-[#38BDF8]/10 px-1.5 py-0.5 rounded border border-[#38BDF8]/30"
+                className="text-[9px] font-mono text-[#5eead4] bg-[#5eead4]/10 px-1.5 py-0.5 rounded border border-[#5eead4]/30"
               >
                 {reg}
               </span>
@@ -89,7 +89,7 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
 
       <div>
         {/* Metadata Strip */}
-        <div className="flex items-center justify-between py-2.5 border-t border-[#22334D]/80 text-[11px] text-[#64748B] mb-3">
+        <div className="flex items-center justify-between py-2.5 border-t border-[#1e293b]/80 text-[11px] text-[#64748B] mb-3">
           <div className="flex items-center gap-1">
             <Layers className="w-3.5 h-3.5 text-[#94A3B8]" />
             <span>{scenario.phases.length} Phases</span>
@@ -100,7 +100,7 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
             <span>{scenario.estimatedDurationHours ?? 4}h window</span>
           </div>
 
-          <div className="flex items-center gap-1 font-mono text-[#F59E0B]">
+          <div className="flex items-center gap-1 font-mono text-[#fbbf24]">
             <DollarSign className="w-3.5 h-3.5" />
             <span>Base: {formatCurrency(scenario.baselineCostUsd ?? 100000)}</span>
           </div>
@@ -109,11 +109,11 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
         {/* Bottom Actor & CTA Button */}
         <div className="flex items-center justify-between pt-1">
           <div className="flex items-center gap-1.5 text-xs text-[#94A3B8] min-w-0 pr-2">
-            <ShieldAlert className="w-3.5 h-3.5 text-[#00F0FF] shrink-0" />
+            <ShieldAlert className="w-3.5 h-3.5 text-[#2dd4bf] shrink-0" />
             <span className="truncate text-[11px] text-[#CBD5E1]">{scenario.threatActor}</span>
           </div>
 
-          <div className="flex items-center gap-1 text-xs font-bold text-[#00F0FF] group-hover:translate-x-1 transition-transform shrink-0">
+          <div className="flex items-center gap-1 text-xs font-bold text-[#2dd4bf] group-hover:translate-x-1 transition-transform shrink-0">
             <span>INSPECT & DRILL</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </div>

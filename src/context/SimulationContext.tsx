@@ -13,6 +13,8 @@ import {
   Competency,
   CompetencyScore,
 } from '../types';
+import { SCENARIOS } from '../data/scenariosData';
+import { DOCTRINE_PLAYBOOKS } from '../data/doctrineData';
 
 interface SimulationContextType {
   currentScreen: Screen;
@@ -37,6 +39,47 @@ interface SimulationContextType {
 }
 
 const STORAGE_KEY = 'breach_tabletop_records';
+
+/**
+ * Hash-based deep links so movahedi.ca can link straight into app screens:
+ *   #/                        -> home
+ *   #/scenario/<id>           -> scenario briefing
+ *   #/scenario/<id>/drill     -> (fresh load lands on briefing; in-app starts drill)
+ *   #/scenario/<id>/report    -> (fresh load lands on briefing)
+ *   #/doctrine                -> doctrine list
+ *   #/doctrine/<id>           -> doctrine playbook
+ *   #/history                 -> drill history
+ *   #/advisory                -> advisory
+ */
+const hashFor = (screen: Screen, scenarioId?: string | null, doctrineId?: string | null): string => {
+  switch (screen) {
+    case Screen.SCENARIO_DETAIL:
+      return scenarioId ? `#/scenario/${scenarioId}` : '#/';
+    case Screen.SIMULATION:
+      return scenarioId ? `#/scenario/${scenarioId}/drill` : '#/';
+    case Screen.AAR_REPORT:
+      return scenarioId ? `#/scenario/${scenarioId}/report` : '#/';
+    case Screen.DOCTRINE_LIST:
+      return '#/doctrine';
+    case Screen.DOCTRINE_DETAIL:
+      return doctrineId ? `#/doctrine/${doctrineId}` : '#/doctrine';
+    case Screen.HISTORY_LOGS:
+      return '#/history';
+    case Screen.ADVISORY:
+      return '#/advisory';
+    case Screen.HOME:
+    default:
+      return '#/';
+  }
+};
+
+const writeHash = (screen: Screen, scenarioId?: string | null, doctrineId?: string | null): void => {
+  if (typeof window === 'undefined') return;
+  const target = hashFor(screen, scenarioId, doctrineId);
+  if (window.location.hash !== target) {
+    window.location.hash = target;
+  }
+};
 
 const defaultLiveMetrics: LiveMetrics = {
   financialCostUsd: 0,
@@ -74,13 +117,56 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }
   }, [pastDrills]);
 
+  // Deep-link support: parse the hash on load and on back/forward navigation.
+  // Drill/report hashes land on the scenario briefing on a fresh load, since
+  // live simulation state cannot be reconstructed from a URL.
+  useEffect(() => {
+    const applyHash = () => {
+      const raw = window.location.hash.replace(/^#\/?/, '');
+      if (!raw) return;
+      const parts = raw.split('/').filter(Boolean);
+      const [head, id] = parts;
+      if (head === 'scenario' && id) {
+        const sc = SCENARIOS.find((s) => s.id === id);
+        if (sc) {
+          setSelectedScenario(sc);
+          setCurrentScreen(Screen.SCENARIO_DETAIL);
+          return;
+        }
+      } else if (head === 'doctrine') {
+        if (id) {
+          const pb = DOCTRINE_PLAYBOOKS.find((d) => d.id === id);
+          if (pb) {
+            setSelectedDoctrine(pb);
+            setCurrentScreen(Screen.DOCTRINE_DETAIL);
+            return;
+          }
+        }
+        setCurrentScreen(Screen.DOCTRINE_LIST);
+        return;
+      } else if (head === 'history') {
+        setCurrentScreen(Screen.HISTORY_LOGS);
+        return;
+      } else if (head === 'advisory') {
+        setCurrentScreen(Screen.ADVISORY);
+        return;
+      }
+      setCurrentScreen(Screen.HOME);
+    };
+    applyHash();
+    window.addEventListener('hashchange', applyHash);
+    return () => window.removeEventListener('hashchange', applyHash);
+  }, []);
+
   const navigateTo = useCallback((screen: Screen) => {
     setCurrentScreen(screen);
+    writeHash(screen);
   }, []);
 
   const selectScenario = useCallback((scenario: IncidentScenario) => {
     setSelectedScenario(scenario);
     setCurrentScreen(Screen.SCENARIO_DETAIL);
+    writeHash(Screen.SCENARIO_DETAIL, scenario.id);
   }, []);
 
   const startSimulation = useCallback((scenarioToStart?: IncidentScenario) => {
@@ -100,6 +186,7 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     setActiveDecisionFeedback(null);
     setAfterActionReport(null);
     setCurrentScreen(Screen.SIMULATION);
+    writeHash(Screen.SIMULATION, target.id);
   }, [selectedScenario]);
 
   const returnToHome = useCallback(() => {
@@ -107,6 +194,7 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     setSelectedScenario(null);
     setActiveDecisionFeedback(null);
     setDecisionsHistory([]);
+    writeHash(Screen.HOME);
   }, []);
 
   const abortSimulation = useCallback(() => {
@@ -307,6 +395,7 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
       setAfterActionReport(report);
       setCurrentScreen(Screen.AAR_REPORT);
+      writeHash(Screen.AAR_REPORT, scenario.id);
 
       // Save drill record
       const record: SimulationRecord = {
@@ -349,6 +438,7 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const selectDoctrine = useCallback((playbook: DoctrinePlaybook) => {
     setSelectedDoctrine(playbook);
     setCurrentScreen(Screen.DOCTRINE_DETAIL);
+    writeHash(Screen.DOCTRINE_DETAIL, null, playbook.id);
   }, []);
 
   const deletePastDrill = useCallback((id: number) => {

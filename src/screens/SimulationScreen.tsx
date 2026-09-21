@@ -39,11 +39,11 @@ export const SimulationScreen: React.FC = () => {
 
   if (!selectedScenario) {
     return (
-      <div className="min-h-screen bg-[#0B101B] flex flex-col items-center justify-center p-4">
+      <div className="min-h-screen bg-[#020617] flex flex-col items-center justify-center p-4">
         <p className="text-sm text-[#94A3B8] mb-4">No active simulation.</p>
         <button
           onClick={() => navigateTo(Screen.HOME)}
-          className="px-4 py-2 bg-[#00F0FF] text-[#001F2B] font-bold rounded-lg text-xs"
+          className="px-4 py-2 bg-[#2dd4bf] text-[#042f2e] font-bold rounded-lg text-xs"
         >
           Return to Command Center
         </button>
@@ -74,9 +74,9 @@ export const SimulationScreen: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#0B101B] text-[#F8FAFC] pb-28 md:pb-12 px-4 md:px-8 pt-4 md:pt-6 max-w-7xl mx-auto relative">
+    <div className="w-full bg-[#020617] text-[#F8FAFC] pb-28 md:pb-12 px-4 md:px-8 pt-4 md:pt-6 max-w-7xl mx-auto relative">
       {/* Top Header Bar: Status & Phase Navigator */}
-      <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-3.5 md:p-4 mb-5 shadow-lg">
+      <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-3.5 md:p-4 mb-5 shadow-lg">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           {/* Left: Abort & Codename */}
           <div className="flex items-center gap-3">
@@ -84,7 +84,7 @@ export const SimulationScreen: React.FC = () => {
               type="button"
               onClick={() => setShowAbortConfirm(true)}
               data-testid="abort_drill_button"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#EF4444]/10 hover:bg-[#EF4444]/20 border border-[#EF4444]/30 text-[#EF4444] text-xs font-bold transition-all shrink-0"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#f87171]/10 hover:bg-[#f87171]/20 border border-[#f87171]/30 text-[#f87171] text-xs font-bold transition-all shrink-0"
             >
               <X className="w-3.5 h-3.5" />
               <span>ABORT DRILL</span>
@@ -92,10 +92,10 @@ export const SimulationScreen: React.FC = () => {
 
             <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono font-bold text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded border border-[#00F0FF]/30 uppercase">
+                <span className="text-[10px] font-mono font-bold text-[#2dd4bf] bg-[#2dd4bf]/10 px-2 py-0.5 rounded border border-[#2dd4bf]/30 uppercase">
                   {selectedScenario.codename}
                 </span>
-                <span className="text-[10px] font-mono text-[#EF4444] bg-[#EF4444]/15 px-2 py-0.5 rounded border border-[#EF4444]/40 font-bold">
+                <span className="text-[10px] font-mono text-[#f87171] bg-[#f87171]/15 px-2 py-0.5 rounded border border-[#f87171]/40 font-bold">
                   {getDefconLabel(selectedScenario.severity)}
                 </span>
               </div>
@@ -116,16 +116,16 @@ export const SimulationScreen: React.FC = () => {
                   key={phase.phaseNumber || idx}
                   className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-mono font-bold border transition-all shrink-0 ${
                     isCurrent
-                      ? 'bg-[#00F0FF]/20 border-[#00F0FF] text-[#00F0FF] shadow-[0_0_10px_rgba(0,240,255,0.2)]'
+                      ? 'bg-[#2dd4bf]/20 border-[#2dd4bf] text-[#2dd4bf] shadow-[0_0_10px_rgba(45,212,191,0.2)]'
                       : isCompleted
-                      ? 'bg-[#10B981]/15 border-[#10B981]/40 text-[#10B981]'
-                      : 'bg-[#0B101B] border-[#22334D] text-[#64748B]'
+                      ? 'bg-[#34d399]/15 border-[#34d399]/40 text-[#34d399]'
+                      : 'bg-[#020617] border-[#1e293b] text-[#64748B]'
                   }`}
                 >
                   {isCompleted ? (
                     <CheckCircle2 className="w-3.5 h-3.5" />
                   ) : isCurrent ? (
-                    <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-ping" />
+                    <span className="w-2 h-2 rounded-full bg-[#2dd4bf] animate-ping" />
                   ) : (
                     <span className="w-2 h-2 rounded-full bg-[#64748B]" />
                   )}
@@ -151,16 +151,16 @@ export const SimulationScreen: React.FC = () => {
         <div className="lg:col-span-7 xl:col-span-8 space-y-4">
           {/* Tactical Situation Briefing */}
           {currentPhase && (
-            <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-5 shadow-md">
+            <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-5 shadow-md">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
-                  <Terminal className="w-4 h-4 text-[#00F0FF]" />
-                  <span className="text-[10px] font-extrabold tracking-widest text-[#00F0FF] uppercase">
+                  <Terminal className="w-4 h-4 text-[#2dd4bf]" />
+                  <span className="text-[10px] font-extrabold tracking-widest text-[#2dd4bf] uppercase">
                     TACTICAL SITUATION BRIEFING // PHASE {currentPhase.phaseNumber ?? currentPhaseIndex + 1}
                   </span>
                 </div>
                 {currentPhase.timeLabel && (
-                  <span className="text-[10px] font-mono text-[#38BDF8] bg-[#38BDF8]/10 px-2 py-0.5 rounded border border-[#38BDF8]/30">
+                  <span className="text-[10px] font-mono text-[#5eead4] bg-[#5eead4]/10 px-2 py-0.5 rounded border border-[#5eead4]/30">
                     {currentPhase.timeLabel}
                   </span>
                 )}
@@ -183,10 +183,10 @@ export const SimulationScreen: React.FC = () => {
           {/* Crisis Dilemma Question */}
           {currentPhase?.dilemma && (
             <div className="space-y-4">
-              <div className="bg-gradient-to-r from-[#1A263B] to-[#131D2E] border border-[#38BDF8]/40 rounded-2xl p-5 shadow-lg">
+              <div className="bg-gradient-to-r from-[#0f172a] to-[#0f172a] border border-[#5eead4]/40 rounded-2xl p-5 shadow-lg">
                 <div className="flex items-center gap-2 mb-2">
-                  <HelpCircle className="w-4 h-4 text-[#38BDF8]" />
-                  <span className="text-[10px] font-black tracking-widest text-[#38BDF8] uppercase">
+                  <HelpCircle className="w-4 h-4 text-[#5eead4]" />
+                  <span className="text-[10px] font-black tracking-widest text-[#5eead4] uppercase">
                     INCIDENT COMMANDER DIRECTIVE REQUIRED
                   </span>
                 </div>
@@ -196,7 +196,7 @@ export const SimulationScreen: React.FC = () => {
                 </h3>
 
                 {(currentPhase.dilemma.operationalContext || currentPhase.dilemma.contextNotes) && (
-                  <p className="text-xs text-[#94A3B8] border-t border-[#22334D] pt-2.5 mt-2">
+                  <p className="text-xs text-[#94A3B8] border-t border-[#1e293b] pt-2.5 mt-2">
                     <strong className="text-[#CBD5E1] font-semibold">Strategic Context: </strong>
                     {currentPhase.dilemma.operationalContext || currentPhase.dilemma.contextNotes}
                   </p>
@@ -233,15 +233,15 @@ export const SimulationScreen: React.FC = () => {
           <LiveWarRoomMeters metrics={liveMetrics} />
 
           {/* Active Drill Threat Dossier */}
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
-            <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-[#22334D]">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
+            <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-[#1e293b]">
               <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-[#EF4444]" />
+                <Shield className="w-4 h-4 text-[#f87171]" />
                 <span className="text-xs font-bold text-[#F8FAFC] uppercase">
                   Adversary Intel
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-[#EF4444] font-bold">
+              <span className="text-[10px] font-mono text-[#f87171] font-bold">
                 {selectedScenario.category}
               </span>
             </div>
@@ -264,7 +264,7 @@ export const SimulationScreen: React.FC = () => {
                   {selectedScenario.impactedSystems.map((sys) => (
                     <span
                       key={sys}
-                      className="text-[10px] font-mono text-[#94A3B8] bg-[#0B101B] px-2 py-0.5 rounded border border-[#22334D]"
+                      className="text-[10px] font-mono text-[#94A3B8] bg-[#020617] px-2 py-0.5 rounded border border-[#1e293b]"
                     >
                       {sys}
                     </span>
@@ -275,15 +275,15 @@ export const SimulationScreen: React.FC = () => {
           </div>
 
           {/* Tactical Decisions History Feed so far */}
-          <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-4 shadow-md">
-            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#22334D]">
+          <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
+            <div className="flex items-center justify-between mb-3 pb-2 border-b border-[#1e293b]">
               <div className="flex items-center gap-2">
-                <History className="w-4 h-4 text-[#00F0FF]" />
+                <History className="w-4 h-4 text-[#2dd4bf]" />
                 <span className="text-xs font-bold text-[#F8FAFC] uppercase">
                   Orders Executed Log
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-[#38BDF8]">
+              <span className="text-[10px] font-mono text-[#5eead4]">
                 {decisionsHistory.length} ORDERS
               </span>
             </div>
@@ -297,10 +297,10 @@ export const SimulationScreen: React.FC = () => {
                 {decisionsHistory.map((item, idx) => (
                   <div
                     key={idx}
-                    className="p-2.5 rounded-xl bg-[#0B101B] border border-[#22334D] text-xs"
+                    className="p-2.5 rounded-xl bg-[#020617] border border-[#1e293b] text-xs"
                   >
                     <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-mono text-[#00F0FF] font-bold">
+                      <span className="text-[10px] font-mono text-[#2dd4bf] font-bold">
                         PHASE {item.phaseNumber || idx + 1}
                       </span>
                       <span className="text-[9px] text-[#64748B]">
@@ -310,7 +310,7 @@ export const SimulationScreen: React.FC = () => {
                     <p className="font-semibold text-[#F8FAFC] text-[11px] mb-1">
                       {item.choice.title}
                     </p>
-                    <div className="flex items-center gap-2 text-[10px] font-mono text-[#F59E0B]">
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-[#fbbf24]">
                       <span>+{formatCurrency(item.choice.costDeltaUsd)}</span>
                       <span>•</span>
                       <span>+{item.choice.timeDeltaHours}h</span>
@@ -335,8 +335,8 @@ export const SimulationScreen: React.FC = () => {
       {/* Abort Confirmation Dialog */}
       {showAbortConfirm && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="w-full max-w-sm bg-[#131D2E] border border-[#EF4444]/40 rounded-2xl p-5 shadow-2xl">
-            <div className="flex items-center gap-2 text-[#EF4444] mb-2">
+          <div className="w-full max-w-sm bg-[#0f172a] border border-[#f87171]/40 rounded-2xl p-5 shadow-2xl">
+            <div className="flex items-center gap-2 text-[#f87171] mb-2">
               <AlertCircle className="w-5 h-5" />
               <h3 className="text-base font-bold text-[#F8FAFC]">Abort Incident Drill?</h3>
             </div>
@@ -347,7 +347,7 @@ export const SimulationScreen: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowAbortConfirm(false)}
-                className="flex-1 py-2.5 rounded-xl bg-[#0B101B] border border-[#22334D] text-xs font-semibold text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
+                className="flex-1 py-2.5 rounded-xl bg-[#020617] border border-[#1e293b] text-xs font-semibold text-[#94A3B8] hover:text-[#F8FAFC] transition-colors"
               >
                 Continue Drill
               </button>
@@ -357,7 +357,7 @@ export const SimulationScreen: React.FC = () => {
                   setShowAbortConfirm(false);
                   abortSimulation();
                 }}
-                className="flex-1 py-2.5 rounded-xl bg-[#EF4444] hover:bg-[#EF4444]/90 text-[#F8FAFC] text-xs font-bold transition-colors"
+                className="flex-1 py-2.5 rounded-xl bg-[#f87171] hover:bg-[#f87171]/90 text-[#F8FAFC] text-xs font-bold transition-colors"
               >
                 Abort Drill
               </button>

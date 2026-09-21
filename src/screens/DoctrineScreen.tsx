@@ -19,6 +19,38 @@ import { allPlaybooks } from '../data/doctrineData';
 import { DoctrinePlaybook } from '../types';
 import { MovahediData } from '../data/movahediData';
 
+/** Deep links from each playbook into movahedi.ca content. */
+const DOCTRINE_SITE_LINKS: Record<string, { label: string; href: string }[]> = {
+  'pipeda-law25-breach': [
+    { label: 'Glossary: Confidentiality incident (Law 25)', href: '/glossary#breach-confidentiality-incident' },
+    { label: 'Glossary: Law 25', href: '/glossary#law-25' },
+  ],
+  'gdpr-art-33-34': [
+    { label: 'Glossary: Breach notification duties', href: '/glossary#breach-confidentiality-incident' },
+    { label: 'Privacy insights', href: '/insights' },
+  ],
+  'sec-item-105': [
+    { label: 'Glossary: Critical incident', href: '/glossary#critical-incident' },
+    { label: 'Privacy insights', href: '/insights' },
+  ],
+  'hipaa-breach-rule': [
+    { label: 'Glossary: Breach notification duties', href: '/glossary#breach-confidentiality-incident' },
+    { label: 'Privacy insights', href: '/insights' },
+  ],
+  'nist-sp-800-61': [
+    { label: 'Glossary: Critical incident', href: '/glossary#critical-incident' },
+    { label: 'Privacy insights', href: '/insights' },
+  ],
+  'nydfs-23-nycrr-500': [
+    { label: 'Glossary: Breach notification duties', href: '/glossary#breach-confidentiality-incident' },
+    { label: 'Privacy insights', href: '/insights' },
+  ],
+  'aida-ai-governance': [
+    { label: 'Glossary: AI incident reporting', href: '/glossary#incident-reporting-ai' },
+    { label: 'Glossary: Automated decision-making', href: '/glossary#admt' },
+  ],
+};
+
 export const DoctrineScreen: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('ALL');
@@ -69,13 +101,13 @@ export const DoctrineScreen: React.FC = () => {
   }, [filteredPlaybooks, selectedPlaybookId]);
 
   return (
-    <div className="w-full bg-[#0B101B] text-[#F8FAFC] pb-24 md:pb-12 px-4 md:px-8 pt-4 md:pt-6 max-w-7xl mx-auto">
+    <div className="w-full bg-[#020617] text-[#F8FAFC] pb-24 md:pb-12 px-4 md:px-8 pt-4 md:pt-6 max-w-7xl mx-auto">
       {/* Top Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 border-b border-[#22334D] pb-4">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6 border-b border-[#1e293b] pb-4">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF]" />
-            <span className="text-[10px] font-extrabold tracking-widest text-[#00F0FF] uppercase">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#2dd4bf] shadow-[0_0_8px_#2dd4bf]" />
+            <span className="text-[10px] font-extrabold tracking-widest text-[#2dd4bf] uppercase">
               STATUTORY INCIDENT DOCTRINE & PLAYBOOKS
             </span>
           </div>
@@ -97,7 +129,7 @@ export const DoctrineScreen: React.FC = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             data-testid="doctrine_search_input"
             placeholder="Search regulation, penalty, or requirement..."
-            className="w-full bg-[#131D2E] border border-[#22334D] rounded-xl pl-9 pr-3 py-2 text-xs text-[#F8FAFC] placeholder-[#64748B] focus:outline-none focus:border-[#00F0FF]/60 transition-colors"
+            className="w-full bg-[#0f172a] border border-[#1e293b] rounded-xl pl-9 pr-3 py-2 text-xs text-[#F8FAFC] placeholder-[#64748B] focus:outline-none focus:border-[#2dd4bf]/60 transition-colors"
           />
         </div>
       </div>
@@ -115,8 +147,8 @@ export const DoctrineScreen: React.FC = () => {
             data-testid={`filter_chip_${auth.replace(/\s+/g, '_')}`}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all ${
               selectedFilter === auth
-                ? 'bg-[#00F0FF] text-[#001F2B] font-bold shadow-sm'
-                : 'bg-[#131D2E] text-[#94A3B8] hover:text-[#F8FAFC] border border-[#22334D]'
+                ? 'bg-[#2dd4bf] text-[#042f2e] font-bold shadow-sm'
+                : 'bg-[#0f172a] text-[#94A3B8] hover:text-[#F8FAFC] border border-[#1e293b]'
             }`}
           >
             {auth}
@@ -149,20 +181,20 @@ export const DoctrineScreen: React.FC = () => {
                   setSelectedPlaybookId(playbook.id);
                   setExpandedMobileId(isExpandedMobile ? null : playbook.id);
                 }}
-                className={`w-full bg-[#131D2E] border rounded-2xl p-4 transition-all cursor-pointer shadow-md text-left ${
+                className={`w-full bg-[#0f172a] border rounded-2xl p-4 transition-all cursor-pointer shadow-md text-left ${
                   isSelected
-                    ? 'border-[#00F0FF] bg-[#1A263B] shadow-[0_0_15px_rgba(0,240,255,0.12)]'
-                    : 'border-[#22334D] hover:border-[#00F0FF]/40'
+                    ? 'border-[#2dd4bf] bg-[#0f172a] shadow-[0_0_15px_rgba(45,212,191,0.12)]'
+                    : 'border-[#1e293b] hover:border-[#2dd4bf]/40'
                 }`}
               >
                 {/* Top Tags */}
                 <div className="flex items-center justify-between gap-2 mb-2">
-                  <span className="text-[10px] font-extrabold tracking-wider text-[#00F0FF] bg-[#00F0FF]/10 px-2 py-0.5 rounded border border-[#00F0FF]/30 uppercase">
+                  <span className="text-[10px] font-extrabold tracking-wider text-[#2dd4bf] bg-[#2dd4bf]/10 px-2 py-0.5 rounded border border-[#2dd4bf]/30 uppercase">
                     {playbook.regulatoryAuthority || playbook.authority}
                   </span>
 
-                  <div className="flex items-center gap-1 text-[10px] font-mono font-bold text-[#FCA5A5] bg-[#EF4444]/15 px-2 py-0.5 rounded border border-[#EF4444]/30">
-                    <Clock className="w-3 h-3 text-[#EF4444]" />
+                  <div className="flex items-center gap-1 text-[10px] font-mono font-bold text-[#FCA5A5] bg-[#f87171]/15 px-2 py-0.5 rounded border border-[#f87171]/30">
+                    <Clock className="w-3 h-3 text-[#f87171]" />
                     <span>{playbook.deadlineWindow}</span>
                   </div>
                 </div>
@@ -171,7 +203,7 @@ export const DoctrineScreen: React.FC = () => {
                 <h3 className="text-sm font-bold text-[#F8FAFC] mb-1.5">{playbook.title}</h3>
 
                 {/* Statutory Penalties */}
-                <div className="flex items-center gap-1.5 text-xs text-[#F59E0B] font-semibold mb-2 bg-[#0B101B] p-2 rounded-lg border border-[#22334D]">
+                <div className="flex items-center gap-1.5 text-xs text-[#fbbf24] font-semibold mb-2 bg-[#020617] p-2 rounded-lg border border-[#1e293b]">
                   <Gavel className="w-3.5 h-3.5 shrink-0" />
                   <span className="text-[11px] truncate">
                     PENALTIES: {playbook.statutoryPenalties}
@@ -184,18 +216,18 @@ export const DoctrineScreen: React.FC = () => {
                 </p>
 
                 {/* Mobile-Only Expanded Detail Container */}
-                <div className="lg:hidden mt-3 pt-3 border-t border-[#22334D]">
+                <div className="lg:hidden mt-3 pt-3 border-t border-[#1e293b]">
                   {isExpandedMobile && (
                     <div className="space-y-4 pt-1">
                       {/* Mandatory Requirements Checklist */}
                       <div>
-                        <span className="text-[10px] font-black tracking-wider text-[#00F0FF] uppercase block mb-2">
+                        <span className="text-[10px] font-black tracking-wider text-[#2dd4bf] uppercase block mb-2">
                           MANDATORY DISCLOSURE ELEMENTS
                         </span>
                         <div className="space-y-1.5">
                           {playbook.mandatoryRequirements.map((req, idx) => (
                             <div key={idx} className="flex items-start gap-2 text-xs text-[#F8FAFC]">
-                              <Check className="w-3.5 h-3.5 text-[#00F0FF] shrink-0 mt-0.5" />
+                              <Check className="w-3.5 h-3.5 text-[#2dd4bf] shrink-0 mt-0.5" />
                               <span className="leading-snug">{req}</span>
                             </div>
                           ))}
@@ -204,13 +236,13 @@ export const DoctrineScreen: React.FC = () => {
 
                       {/* Incident Checklist */}
                       <div>
-                        <span className="text-[10px] font-black tracking-wider text-[#10B981] uppercase block mb-2">
+                        <span className="text-[10px] font-black tracking-wider text-[#34d399] uppercase block mb-2">
                           INCIDENT ACTION PLAYBOOK
                         </span>
                         <div className="space-y-1.5">
                           {playbook.incidentPlaybookChecklist.map((step, idx) => (
                             <div key={idx} className="flex items-start gap-2 text-xs text-[#CBD5E1]">
-                              <ArrowRight className="w-3.5 h-3.5 text-[#10B981] shrink-0 mt-0.5" />
+                              <ArrowRight className="w-3.5 h-3.5 text-[#34d399] shrink-0 mt-0.5" />
                               <span className="leading-snug">{step}</span>
                             </div>
                           ))}
@@ -219,13 +251,13 @@ export const DoctrineScreen: React.FC = () => {
 
                       {/* Common Pitfalls */}
                       <div>
-                        <span className="text-[10px] font-black tracking-wider text-[#EF4444] uppercase block mb-2">
+                        <span className="text-[10px] font-black tracking-wider text-[#f87171] uppercase block mb-2">
                           COMMON SANCTIONS & PITFALLS
                         </span>
                         <div className="space-y-1.5">
                           {playbook.commonPitfalls.map((pitfall, idx) => (
                             <div key={idx} className="flex items-start gap-2 text-xs text-[#FCA5A5]">
-                              <AlertTriangle className="w-3.5 h-3.5 text-[#EF4444] shrink-0 mt-0.5" />
+                              <AlertTriangle className="w-3.5 h-3.5 text-[#f87171] shrink-0 mt-0.5" />
                               <span className="leading-snug">{pitfall}</span>
                             </div>
                           ))}
@@ -234,7 +266,7 @@ export const DoctrineScreen: React.FC = () => {
                     </div>
                   )}
 
-                  <div className="flex items-center justify-center gap-1 text-xs font-bold text-[#00F0FF] pt-2">
+                  <div className="flex items-center justify-center gap-1 text-xs font-bold text-[#2dd4bf] pt-2">
                     <span>{isExpandedMobile ? 'COLLAPSE' : 'EXPAND DETAILS'}</span>
                     {isExpandedMobile ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </div>
@@ -247,16 +279,16 @@ export const DoctrineScreen: React.FC = () => {
         {/* Right Column: Dedicated Desktop Interactive Workbench (7 cols on desktop, hidden on mobile) */}
         <div className="hidden lg:block lg:col-span-7 space-y-5">
           {activePlaybook ? (
-            <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-6 shadow-xl space-y-6">
+            <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-6 shadow-xl space-y-6">
               {/* Playbook Header */}
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-extrabold tracking-widest text-[#00F0FF] bg-[#00F0FF]/10 px-2.5 py-1 rounded-md border border-[#00F0FF]/30 uppercase">
+                  <span className="text-xs font-extrabold tracking-widest text-[#2dd4bf] bg-[#2dd4bf]/10 px-2.5 py-1 rounded-md border border-[#2dd4bf]/30 uppercase">
                     {activePlaybook.regulatoryAuthority || activePlaybook.authority}
                   </span>
 
-                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#FCA5A5] bg-[#EF4444]/15 px-3 py-1 rounded-md border border-[#EF4444]/30">
-                    <Clock className="w-3.5 h-3.5 text-[#EF4444]" />
+                  <div className="flex items-center gap-1.5 text-xs font-mono font-bold text-[#FCA5A5] bg-[#f87171]/15 px-3 py-1 rounded-md border border-[#f87171]/30">
+                    <Clock className="w-3.5 h-3.5 text-[#f87171]" />
                     <span>STATUTORY WINDOW: {activePlaybook.deadlineWindow}</span>
                   </div>
                 </div>
@@ -271,10 +303,10 @@ export const DoctrineScreen: React.FC = () => {
               </div>
 
               {/* Statutory Penalties Alert Box */}
-              <div className="p-4 rounded-xl bg-[#0B101B] border border-[#F59E0B]/30 flex items-start gap-3">
-                <Gavel className="w-5 h-5 text-[#F59E0B] shrink-0 mt-0.5" />
+              <div className="p-4 rounded-xl bg-[#020617] border border-[#fbbf24]/30 flex items-start gap-3">
+                <Gavel className="w-5 h-5 text-[#fbbf24] shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-[11px] font-black text-[#F59E0B] uppercase tracking-wider block mb-0.5">
+                  <span className="text-[11px] font-black text-[#fbbf24] uppercase tracking-wider block mb-0.5">
                     STATUTORY ENFORCEMENT & FINANCIAL PENALTIES
                   </span>
                   <p className="text-xs text-[#CBD5E1] leading-relaxed">
@@ -285,8 +317,8 @@ export const DoctrineScreen: React.FC = () => {
 
               {/* Interactive Mandatory Disclosure Elements Checklist */}
               <div>
-                <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-[#22334D]">
-                  <span className="text-xs font-black tracking-widest text-[#00F0FF] uppercase">
+                <div className="flex items-center justify-between mb-2.5 pb-2 border-b border-[#1e293b]">
+                  <span className="text-xs font-black tracking-widest text-[#2dd4bf] uppercase">
                     MANDATORY DISCLOSURE CONTENT CHECKLIST
                   </span>
                   <span className="text-[10px] text-[#64748B]">
@@ -304,13 +336,13 @@ export const DoctrineScreen: React.FC = () => {
                         onClick={() => toggleCheck(activePlaybook.id, idx)}
                         className={`flex items-start gap-3 p-3 rounded-xl border transition-all cursor-pointer select-none ${
                           isDone
-                            ? 'bg-[#10B981]/10 border-[#10B981]/40 text-[#F8FAFC]'
-                            : 'bg-[#0B101B] border-[#22334D] hover:border-[#00F0FF]/30 text-[#CBD5E1]'
+                            ? 'bg-[#34d399]/10 border-[#34d399]/40 text-[#F8FAFC]'
+                            : 'bg-[#020617] border-[#1e293b] hover:border-[#2dd4bf]/30 text-[#CBD5E1]'
                         }`}
                       >
                         <div className="mt-0.5 shrink-0">
                           {isDone ? (
-                            <CheckSquare className="w-4 h-4 text-[#10B981]" />
+                            <CheckSquare className="w-4 h-4 text-[#34d399]" />
                           ) : (
                             <Square className="w-4 h-4 text-[#64748B]" />
                           )}
@@ -326,7 +358,7 @@ export const DoctrineScreen: React.FC = () => {
 
               {/* Incident Containment Playbook Action Steps */}
               <div>
-                <span className="text-xs font-black tracking-widest text-[#10B981] uppercase block mb-2.5 pb-2 border-b border-[#22334D]">
+                <span className="text-xs font-black tracking-widest text-[#34d399] uppercase block mb-2.5 pb-2 border-b border-[#1e293b]">
                   INCIDENT RESPONSE ACTION CHECKLIST
                 </span>
 
@@ -334,9 +366,9 @@ export const DoctrineScreen: React.FC = () => {
                   {activePlaybook.incidentPlaybookChecklist.map((step, idx) => (
                     <div
                       key={idx}
-                      className="flex items-start gap-2.5 p-2.5 rounded-xl bg-[#0B101B] border border-[#22334D] text-xs text-[#CBD5E1]"
+                      className="flex items-start gap-2.5 p-2.5 rounded-xl bg-[#020617] border border-[#1e293b] text-xs text-[#CBD5E1]"
                     >
-                      <ArrowRight className="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                      <ArrowRight className="w-4 h-4 text-[#34d399] shrink-0 mt-0.5" />
                       <span className="leading-relaxed">{step}</span>
                     </div>
                   ))}
@@ -345,7 +377,7 @@ export const DoctrineScreen: React.FC = () => {
 
               {/* Common Pitfalls & Regulatory Traps */}
               <div>
-                <span className="text-xs font-black tracking-widest text-[#EF4444] uppercase block mb-2.5 pb-2 border-b border-[#22334D]">
+                <span className="text-xs font-black tracking-widest text-[#f87171] uppercase block mb-2.5 pb-2 border-b border-[#1e293b]">
                   COMMON REGULATORY PITFALLS & SANCTION RISKS
                 </span>
 
@@ -353,19 +385,40 @@ export const DoctrineScreen: React.FC = () => {
                   {activePlaybook.commonPitfalls.map((pitfall, idx) => (
                     <div
                       key={idx}
-                      className="flex items-start gap-2.5 p-2.5 rounded-xl bg-[#EF4444]/10 border border-[#EF4444]/30 text-xs text-[#FCA5A5]"
+                      className="flex items-start gap-2.5 p-2.5 rounded-xl bg-[#f87171]/10 border border-[#f87171]/30 text-xs text-[#FCA5A5]"
                     >
-                      <AlertTriangle className="w-4 h-4 text-[#EF4444] shrink-0 mt-0.5" />
+                      <AlertTriangle className="w-4 h-4 text-[#f87171] shrink-0 mt-0.5" />
                       <span className="leading-relaxed">{pitfall}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
+              {/* Go deeper on movahedi.ca */}
+              {(DOCTRINE_SITE_LINKS[activePlaybook.id] || []).length > 0 && (
+                <div className="p-4 rounded-xl bg-[#0f172a] border border-[#1e293b]">
+                  <span className="text-[10px] font-bold text-[#2dd4bf] uppercase tracking-wider block mb-2">
+                    Go deeper on movahedi.ca
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {DOCTRINE_SITE_LINKS[activePlaybook.id].map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#14b8a6]/10 border border-[#14b8a6]/30 text-[#2dd4bf] hover:bg-[#14b8a6]/20 text-xs font-semibold transition-colors no-underline"
+                      >
+                        {link.label}
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* Movahedi Strategic Counsel Note */}
-              <div className="p-4 rounded-xl bg-gradient-to-br from-[#131D2E] to-[#1E293B] border border-[#6366F1]/50 flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-gradient-to-br from-[#0f172a] to-[#1E293B] border border-[#14b8a6]/50 flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] font-bold text-[#00F0FF] uppercase tracking-wider block">
+                  <span className="text-[10px] font-bold text-[#2dd4bf] uppercase tracking-wider block">
                     Need Specialized Regulatory Defense?
                   </span>
                   <span className="text-xs text-[#CBD5E1] font-semibold">
@@ -376,14 +429,14 @@ export const DoctrineScreen: React.FC = () => {
                   href={MovahediData.DISCOVERY_CALL_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-1.5 bg-[#00F0FF] hover:bg-[#00F0FF]/90 text-[#001F2B] text-xs font-bold rounded-lg shrink-0"
+                  className="px-3 py-1.5 bg-[#2dd4bf] hover:bg-[#2dd4bf]/90 text-[#042f2e] text-xs font-bold rounded-lg shrink-0"
                 >
                   Book Advisory
                 </a>
               </div>
             </div>
           ) : (
-            <div className="bg-[#131D2E] border border-[#22334D] rounded-2xl p-8 text-center text-[#64748B]">
+            <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-8 text-center text-[#64748B]">
               Select a playbook from the left to view full doctrine analysis.
             </div>
           )}

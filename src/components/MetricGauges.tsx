@@ -11,13 +11,13 @@ interface LiveWarRoomMetersProps {
 export const LiveWarRoomMeters: React.FC<LiveWarRoomMetersProps> = ({ metrics, className = '' }) => {
   return (
     <div
-      className={`w-full bg-[#131D2E] rounded-xl border border-[#22334D] p-3.5 shadow-lg ${className}`}
+      className={`w-full bg-[#0f172a] rounded-xl border border-[#1e293b] p-3.5 shadow-lg ${className}`}
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-2.5">
         <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-[#EF4444] animate-pulse" />
-          <span className="text-[10px] tracking-widest font-bold text-[#00F0FF]">
+          <span className="w-2 h-2 rounded-full bg-[#f87171] animate-pulse" />
+          <span className="text-[10px] tracking-widest font-bold text-[#2dd4bf]">
             LIVE INCIDENT TELEMETRY
           </span>
         </div>
@@ -32,8 +32,8 @@ export const LiveWarRoomMeters: React.FC<LiveWarRoomMetersProps> = ({ metrics, c
         <MetricBox
           title="EST. IMPACT COST"
           value={formatCurrency(metrics.financialCostUsd)}
-          icon={<DollarSign className="w-3.5 h-3.5 text-[#F59E0B]" />}
-          accentColor={metrics.financialCostUsd > 2000000 ? 'text-[#EF4444]' : 'text-[#F59E0B]'}
+          icon={<DollarSign className="w-3.5 h-3.5 text-[#fbbf24]" />}
+          accentColor={metrics.financialCostUsd > 2000000 ? 'text-[#f87171]' : 'text-[#fbbf24]'}
         />
 
         {/* Public Trust Box */}
@@ -66,7 +66,7 @@ export const MetricBox: React.FC<{
   accentColor: string;
 }> = ({ title, value, icon, accentColor }) => {
   return (
-    <div className="bg-[#0B101B] border border-[#22334D] rounded-lg p-2.5 flex flex-col justify-between">
+    <div className="bg-[#020617] border border-[#1e293b] rounded-lg p-2.5 flex flex-col justify-between">
       <div className="flex items-center gap-1">
         {icon}
         <span className="text-[10px] font-semibold text-[#64748B]">{title}</span>
@@ -78,22 +78,22 @@ export const MetricBox: React.FC<{
 
 export const TrustMetricBox: React.FC<{ trustPercent: number }> = ({ trustPercent }) => {
   const getTrustColor = (pct: number) => {
-    if (pct >= 75) return 'text-[#10B981]';
-    if (pct >= 50) return 'text-[#F59E0B]';
-    return 'text-[#EF4444]';
+    if (pct >= 75) return 'text-[#34d399]';
+    if (pct >= 50) return 'text-[#fbbf24]';
+    return 'text-[#f87171]';
   };
 
   const getBarColor = (pct: number) => {
-    if (pct >= 75) return 'bg-[#10B981]';
-    if (pct >= 50) return 'bg-[#F59E0B]';
-    return 'bg-[#EF4444]';
+    if (pct >= 75) return 'bg-[#34d399]';
+    if (pct >= 50) return 'bg-[#fbbf24]';
+    return 'bg-[#f87171]';
   };
 
   const colorClass = getTrustColor(trustPercent);
   const barColorClass = getBarColor(trustPercent);
 
   return (
-    <div className="bg-[#0B101B] border border-[#22334D] rounded-lg p-2.5 flex flex-col justify-between">
+    <div className="bg-[#020617] border border-[#1e293b] rounded-lg p-2.5 flex flex-col justify-between">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1">
           <Shield className={`w-3.5 h-3.5 ${colorClass}`} />
@@ -118,38 +118,38 @@ export const StatusPill: React.FC<{
   riskLevel?: LegalRiskLevel;
   integrityLevel?: ForensicIntegrity;
 }> = ({ label, value, icon, riskLevel, integrityLevel }) => {
-  let colorStyle = 'text-[#10B981] border-[#10B981]/30';
-  let badgeColor = 'text-[#10B981]';
+  let colorStyle = 'text-[#34d399] border-[#34d399]/30';
+  let badgeColor = 'text-[#34d399]';
 
   if (riskLevel) {
     if (riskLevel === LegalRiskLevel.MINIMAL || riskLevel === LegalRiskLevel.LOW) {
-      colorStyle = 'border-[#10B981]/30';
-      badgeColor = 'text-[#10B981]';
+      colorStyle = 'border-[#34d399]/30';
+      badgeColor = 'text-[#34d399]';
     } else if (riskLevel === LegalRiskLevel.MODERATE) {
-      colorStyle = 'border-[#F59E0B]/30';
-      badgeColor = 'text-[#F59E0B]';
+      colorStyle = 'border-[#fbbf24]/30';
+      badgeColor = 'text-[#fbbf24]';
     } else if (riskLevel === LegalRiskLevel.HIGH) {
       colorStyle = 'border-[#FB923C]/30';
       badgeColor = 'text-[#FB923C]';
     } else {
-      colorStyle = 'border-[#EF4444]/30';
-      badgeColor = 'text-[#EF4444]';
+      colorStyle = 'border-[#f87171]/30';
+      badgeColor = 'text-[#f87171]';
     }
   } else if (integrityLevel) {
     if (integrityLevel === ForensicIntegrity.INTACT) {
-      colorStyle = 'border-[#10B981]/30';
-      badgeColor = 'text-[#10B981]';
+      colorStyle = 'border-[#34d399]/30';
+      badgeColor = 'text-[#34d399]';
     } else if (integrityLevel === ForensicIntegrity.PARTIALLY_COMPROMISED) {
-      colorStyle = 'border-[#F59E0B]/30';
-      badgeColor = 'text-[#F59E0B]';
+      colorStyle = 'border-[#fbbf24]/30';
+      badgeColor = 'text-[#fbbf24]';
     } else {
-      colorStyle = 'border-[#EF4444]/30';
-      badgeColor = 'text-[#EF4444]';
+      colorStyle = 'border-[#f87171]/30';
+      badgeColor = 'text-[#f87171]';
     }
   }
 
   return (
-    <div className={`bg-[#0B101B] border rounded-lg px-2.5 py-1.5 flex items-center gap-2 ${colorStyle}`}>
+    <div className={`bg-[#020617] border rounded-lg px-2.5 py-1.5 flex items-center gap-2 ${colorStyle}`}>
       <span className={badgeColor}>{icon}</span>
       <div className="flex flex-col min-w-0">
         <span className="text-[8px] font-bold text-[#64748B] uppercase">{label}</span>
