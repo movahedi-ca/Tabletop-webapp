@@ -72,7 +72,7 @@ export const ScenarioDetailScreen: React.FC = () => {
         </button>
 
         <div className="flex items-center gap-2">
-          <span className="text-[10px] font-mono text-[#64748B] hidden sm:inline">
+          <span className="text-[10px] font-mono text-[#94A3B8] hidden sm:inline">
             CLASSIFICATION: TOP SECRET // EXERCISE ONLY
           </span>
           <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded-md border ${severityBadge.color}`}>
@@ -120,14 +120,14 @@ export const ScenarioDetailScreen: React.FC = () => {
 
             <div className="space-y-3 text-xs">
               <div>
-                <span className="text-[#64748B] text-[10px] uppercase font-bold block mb-0.5">
+                <span className="text-[#94A3B8] text-[10px] uppercase font-bold block mb-0.5">
                   Adversary Entity / Designation
                 </span>
                 <span className="text-sm font-bold text-[#F8FAFC] block">{selectedScenario.threatActor}</span>
               </div>
 
               <div>
-                <span className="text-[#64748B] text-[10px] uppercase font-bold block mb-0.5">
+                <span className="text-[#94A3B8] text-[10px] uppercase font-bold block mb-0.5">
                   Incident Vector
                 </span>
                 <span className="text-xs text-[#CBD5E1] bg-[#020617] p-2 rounded-lg border border-[#1e293b] block">
@@ -142,23 +142,23 @@ export const ScenarioDetailScreen: React.FC = () => {
             <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
               <div className="flex items-center gap-1.5 text-[#fbbf24] mb-1">
                 <DollarSign className="w-4 h-4" />
-                <span className="text-[10px] font-bold text-[#64748B] uppercase">BASELINE COST</span>
+                <span className="text-[10px] font-bold text-[#94A3B8] uppercase">BASELINE COST</span>
               </div>
               <span className="text-base md:text-lg font-bold font-mono text-[#fbbf24] block">
                 {formatCurrency(selectedScenario.baselineCostUsd ?? 150000)}
               </span>
-              <span className="text-[10px] text-[#64748B] mt-0.5 block">Estimated initial impact</span>
+              <span className="text-[10px] text-[#94A3B8] mt-0.5 block">Estimated initial impact</span>
             </div>
 
             <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
               <div className="flex items-center gap-1.5 text-[#5eead4] mb-1">
                 <Clock className="w-4 h-4" />
-                <span className="text-[10px] font-bold text-[#64748B] uppercase">EST. WINDOW</span>
+                <span className="text-[10px] font-bold text-[#94A3B8] uppercase">EST. WINDOW</span>
               </div>
               <span className="text-base md:text-lg font-bold font-mono text-[#5eead4] block">
                 {selectedScenario.estimatedDurationHours ?? 4} Hours
               </span>
-              <span className="text-[10px] text-[#64748B] mt-0.5 block">Containment window</span>
+              <span className="text-[10px] text-[#94A3B8] mt-0.5 block">Containment window</span>
             </div>
           </div>
 
@@ -245,7 +245,7 @@ export const ScenarioDetailScreen: React.FC = () => {
                     </div>
 
                     {phase.timeLabel && (
-                      <span className="text-[10px] font-mono text-[#64748B]">
+                      <span className="text-[10px] font-mono text-[#94A3B8]">
                         {phase.timeLabel}
                       </span>
                     )}

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   BookOpen,
   Search,
@@ -18,6 +18,7 @@ import {
 import { allPlaybooks } from '../data/doctrineData';
 import { DoctrinePlaybook } from '../types';
 import { MovahediData } from '../data/movahediData';
+import { useSimulation } from '../context/SimulationContext';
 
 /** Deep links from each playbook into movahedi.ca content. */
 const DOCTRINE_SITE_LINKS: Record<string, { label: string; href: string }[]> = {
@@ -52,14 +53,25 @@ const DOCTRINE_SITE_LINKS: Record<string, { label: string; href: string }[]> = {
 };
 
 export const DoctrineScreen: React.FC = () => {
+  const { selectedDoctrine } = useSimulation();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('ALL');
   const [selectedPlaybookId, setSelectedPlaybookId] = useState<string>(
-    allPlaybooks[0]?.id || ''
+    selectedDoctrine?.id || allPlaybooks[0]?.id || ''
   );
   const [expandedMobileId, setExpandedMobileId] = useState<string | null>(
-    allPlaybooks[0]?.id || null
+    selectedDoctrine?.id || allPlaybooks[0]?.id || null
   );
+
+  // Deep links (#/doctrine/<id>) select the requested playbook via context.
+  useEffect(() => {
+    if (selectedDoctrine) {
+      setSelectedPlaybookId(selectedDoctrine.id);
+      setExpandedMobileId(selectedDoctrine.id);
+      setSearchQuery('');
+      setSelectedFilter('ALL');
+    }
+  }, [selectedDoctrine]);
 
   // Interactive checked state for mandatory requirements checklist
   const [checkedRequirements, setCheckedRequirements] = useState<Record<string, boolean>>({});
@@ -122,21 +134,22 @@ export const DoctrineScreen: React.FC = () => {
 
         {/* Search Input */}
         <div className="relative w-full md:w-80 shrink-0">
-          <Search className="w-4 h-4 text-[#64748B] absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             data-testid="doctrine_search_input"
+            aria-label="Search doctrine playbooks"
             placeholder="Search regulation, penalty, or requirement..."
-            className="w-full bg-[#0f172a] border border-[#1e293b] rounded-xl pl-9 pr-3 py-2 text-xs text-[#F8FAFC] placeholder-[#64748B] focus:outline-none focus:border-[#2dd4bf]/60 transition-colors"
+            className="w-full bg-[#0f172a] border border-[#1e293b] rounded-xl pl-9 pr-3 py-2 text-xs text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:border-[#2dd4bf]/60 transition-colors"
           />
         </div>
       </div>
 
       {/* Filter Chips */}
       <div className="flex items-center gap-2 overflow-x-auto pb-2 mb-6 no-scrollbar">
-        <span className="text-[10px] font-bold text-[#64748B] uppercase hidden md:inline shrink-0 mr-1">
+        <span className="text-[10px] font-bold text-[#94A3B8] uppercase hidden md:inline shrink-0 mr-1">
           JURISDICTION:
         </span>
         {authorities.map((auth) => (
@@ -164,7 +177,7 @@ export const DoctrineScreen: React.FC = () => {
             <span className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wider">
               REGULATORY PLAYBOOKS ({filteredPlaybooks.length})
             </span>
-            <span className="text-[10px] text-[#64748B] hidden lg:inline">
+            <span className="text-[10px] text-[#94A3B8] hidden lg:inline">
               SELECT PLAYBOOK TO INSPECT
             </span>
           </div>
@@ -174,13 +187,15 @@ export const DoctrineScreen: React.FC = () => {
             const isExpandedMobile = expandedMobileId === playbook.id;
 
             return (
-              <div
+              <button
+                type="button"
                 key={playbook.id}
                 data-testid={`playbook_card_${playbook.id}`}
                 onClick={() => {
                   setSelectedPlaybookId(playbook.id);
                   setExpandedMobileId(isExpandedMobile ? null : playbook.id);
                 }}
+                aria-label={`Open playbook: ${playbook.title}`}
                 className={`w-full bg-[#0f172a] border rounded-2xl p-4 transition-all cursor-pointer shadow-md text-left ${
                   isSelected
                     ? 'border-[#2dd4bf] bg-[#0f172a] shadow-[0_0_15px_rgba(45,212,191,0.12)]'
@@ -271,7 +286,7 @@ export const DoctrineScreen: React.FC = () => {
                     {isExpandedMobile ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                   </div>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -321,7 +336,7 @@ export const DoctrineScreen: React.FC = () => {
                   <span className="text-xs font-black tracking-widest text-[#2dd4bf] uppercase">
                     MANDATORY DISCLOSURE CONTENT CHECKLIST
                   </span>
-                  <span className="text-[10px] text-[#64748B]">
+                  <span className="text-[10px] text-[#94A3B8]">
                     CLICK TO VERIFY DURING CRISIS DRILL
                   </span>
                 </div>
@@ -331,10 +346,12 @@ export const DoctrineScreen: React.FC = () => {
                     const isDone = !!checkedRequirements[`${activePlaybook.id}_${idx}`];
 
                     return (
-                      <div
+                      <button
+                        type="button"
                         key={idx}
                         onClick={() => toggleCheck(activePlaybook.id, idx)}
-                        className={`flex items-start gap-3 p-3 rounded-xl border transition-all cursor-pointer select-none ${
+                        aria-pressed={isDone}
+                        className={`w-full flex items-start gap-3 p-3 rounded-xl border transition-all cursor-pointer select-none text-left ${
                           isDone
                             ? 'bg-[#34d399]/10 border-[#34d399]/40 text-[#F8FAFC]'
                             : 'bg-[#020617] border-[#1e293b] hover:border-[#2dd4bf]/30 text-[#CBD5E1]'
@@ -344,13 +361,13 @@ export const DoctrineScreen: React.FC = () => {
                           {isDone ? (
                             <CheckSquare className="w-4 h-4 text-[#34d399]" />
                           ) : (
-                            <Square className="w-4 h-4 text-[#64748B]" />
+                            <Square className="w-4 h-4 text-[#94A3B8]" />
                           )}
                         </div>
                         <span className={`text-xs leading-relaxed ${isDone ? 'line-through text-[#94A3B8]' : ''}`}>
                           {req}
                         </span>
-                      </div>
+                      </button>
                     );
                   })}
                 </div>
@@ -436,7 +453,7 @@ export const DoctrineScreen: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-8 text-center text-[#64748B]">
+            <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-8 text-center text-[#94A3B8]">
               Select a playbook from the left to view full doctrine analysis.
             </div>
           )}

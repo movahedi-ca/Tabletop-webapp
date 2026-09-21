@@ -124,7 +124,7 @@ export const HistoryScreen: React.FC = () => {
       {pastDrills.length > 0 && (
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
           <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
-            <span className="text-[10px] font-bold text-[#64748B] uppercase block mb-1">
+            <span className="text-[10px] font-bold text-[#94A3B8] uppercase block mb-1">
               TOTAL DRILLS EXECUTED
             </span>
             <span className="text-xl md:text-3xl font-black font-mono text-[#2dd4bf]">
@@ -134,7 +134,7 @@ export const HistoryScreen: React.FC = () => {
           </div>
 
           <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
-            <span className="text-[10px] font-bold text-[#64748B] uppercase block mb-1">
+            <span className="text-[10px] font-bold text-[#94A3B8] uppercase block mb-1">
               MEAN READINESS SCORE
             </span>
             <span
@@ -152,7 +152,7 @@ export const HistoryScreen: React.FC = () => {
           </div>
 
           <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
-            <span className="text-[10px] font-bold text-[#64748B] uppercase block mb-1">
+            <span className="text-[10px] font-bold text-[#94A3B8] uppercase block mb-1">
               BEST RECORDED GRADE
             </span>
             <span className="text-xl md:text-3xl font-black font-mono text-[#34d399]">
@@ -162,7 +162,7 @@ export const HistoryScreen: React.FC = () => {
           </div>
 
           <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
-            <span className="text-[10px] font-bold text-[#64748B] uppercase block mb-1">
+            <span className="text-[10px] font-bold text-[#94A3B8] uppercase block mb-1">
               TOTAL EXPOSURE MITIGATED
             </span>
             <span className="text-base md:text-2xl font-bold font-mono text-[#fbbf24] truncate block">
@@ -200,13 +200,14 @@ export const HistoryScreen: React.FC = () => {
         <div>
           {/* Search Filter for records */}
           <div className="relative max-w-md mb-4">
-            <Search className="w-4 h-4 text-[#64748B] absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
+              aria-label="Search drill history"
               value={searchFilter}
               onChange={(e) => setSearchFilter(e.target.value)}
               placeholder="Search historical records by scenario title or grade..."
-              className="w-full bg-[#0f172a] border border-[#1e293b] rounded-xl pl-9 pr-3 py-2 text-xs text-[#F8FAFC] placeholder-[#64748B] focus:outline-none focus:border-[#2dd4bf]/60 transition-colors"
+              className="w-full bg-[#0f172a] border border-[#1e293b] rounded-xl pl-9 pr-3 py-2 text-xs text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:border-[#2dd4bf]/60 transition-colors"
             />
           </div>
 
@@ -232,7 +233,7 @@ export const HistoryScreen: React.FC = () => {
                         <h4 className="text-sm md:text-base font-bold text-[#F8FAFC] line-clamp-1">
                           {record.scenarioTitle}
                         </h4>
-                        <span className="text-[11px] font-mono text-[#64748B]">
+                        <span className="text-[11px] font-mono text-[#94A3B8]">
                           {formatDate(record.completedAt || record.timestamp || Date.now())}
                         </span>
                       </div>
@@ -242,7 +243,7 @@ export const HistoryScreen: React.FC = () => {
                       type="button"
                       onClick={() => deletePastDrill(record.id)}
                       data-testid={`delete_record_button_${record.id}`}
-                      className="text-[#64748B] hover:text-[#f87171] p-1.5 rounded-lg hover:bg-[#f87171]/10 transition-colors shrink-0"
+                      className="text-[#94A3B8] hover:text-[#f87171] p-1.5 rounded-lg hover:bg-[#f87171]/10 transition-colors shrink-0"
                       title="Delete record"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -254,23 +255,23 @@ export const HistoryScreen: React.FC = () => {
                   {/* Record Metrics */}
                   <div className="grid grid-cols-4 gap-2 pt-3 border-t border-[#1e293b] text-xs font-mono mb-2">
                     <div>
-                      <span className="text-[9px] text-[#64748B] uppercase block">SCORE</span>
+                      <span className="text-[9px] text-[#94A3B8] uppercase block">SCORE</span>
                       <span className="font-bold text-[#2dd4bf] text-sm">{record.totalScore}%</span>
                     </div>
                     <div>
-                      <span className="text-[9px] text-[#64748B] uppercase block">COST</span>
+                      <span className="text-[9px] text-[#94A3B8] uppercase block">COST</span>
                       <span className="font-bold text-[#fbbf24] truncate block text-xs md:text-sm">
                         {formatCurrency(record.finalCostUsd || 0)}
                       </span>
                     </div>
                     <div>
-                      <span className="text-[9px] text-[#64748B] uppercase block">TIME</span>
+                      <span className="text-[9px] text-[#94A3B8] uppercase block">TIME</span>
                       <span className="font-bold text-[#5eead4] text-sm">
                         {record.totalTimeHours || 0}h
                       </span>
                     </div>
                     <div>
-                      <span className="text-[9px] text-[#64748B] uppercase block">TRUST</span>
+                      <span className="text-[9px] text-[#94A3B8] uppercase block">TRUST</span>
                       <span className="font-bold text-[#34d399] text-sm">
                         {record.publicTrustPercent}%
                       </span>

@@ -119,7 +119,7 @@ export const SimulationScreen: React.FC = () => {
                       ? 'bg-[#2dd4bf]/20 border-[#2dd4bf] text-[#2dd4bf] shadow-[0_0_10px_rgba(45,212,191,0.2)]'
                       : isCompleted
                       ? 'bg-[#34d399]/15 border-[#34d399]/40 text-[#34d399]'
-                      : 'bg-[#020617] border-[#1e293b] text-[#64748B]'
+                      : 'bg-[#020617] border-[#1e293b] text-[#94A3B8]'
                   }`}
                 >
                   {isCompleted ? (
@@ -127,7 +127,7 @@ export const SimulationScreen: React.FC = () => {
                   ) : isCurrent ? (
                     <span className="w-2 h-2 rounded-full bg-[#2dd4bf] animate-ping" />
                   ) : (
-                    <span className="w-2 h-2 rounded-full bg-[#64748B]" />
+                    <span className="w-2 h-2 rounded-full bg-[#94A3B8]" />
                   )}
                   <span>P{phase.phaseNumber || idx + 1}</span>
                   <span className="hidden md:inline text-[10px] font-sans font-normal opacity-80">
@@ -209,7 +209,7 @@ export const SimulationScreen: React.FC = () => {
                   <span className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wider">
                     OPERATIONAL ORDER ALTERNATIVES ({currentPhase.dilemma.choices.length})
                   </span>
-                  <span className="text-[10px] text-[#64748B]">SELECT TO EXECUTE IMMEDIATELY</span>
+                  <span className="text-[10px] text-[#94A3B8]">SELECT TO EXECUTE IMMEDIATELY</span>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -247,7 +247,7 @@ export const SimulationScreen: React.FC = () => {
             </div>
 
             <div className="text-xs space-y-1.5 mb-3">
-              <span className="text-[10px] text-[#64748B] uppercase font-bold block">
+              <span className="text-[10px] text-[#94A3B8] uppercase font-bold block">
                 Threat Actor:
               </span>
               <span className="font-semibold text-[#CBD5E1] block">
@@ -257,7 +257,7 @@ export const SimulationScreen: React.FC = () => {
 
             {selectedScenario.impactedSystems && selectedScenario.impactedSystems.length > 0 && (
               <div>
-                <span className="text-[10px] text-[#64748B] uppercase font-bold block mb-1.5">
+                <span className="text-[10px] text-[#94A3B8] uppercase font-bold block mb-1.5">
                   Compromised Subnets & Systems:
                 </span>
                 <div className="flex flex-wrap gap-1.5">
@@ -289,7 +289,7 @@ export const SimulationScreen: React.FC = () => {
             </div>
 
             {decisionsHistory.length === 0 ? (
-              <div className="text-center py-4 text-[#64748B] text-xs">
+              <div className="text-center py-4 text-[#94A3B8] text-xs">
                 <span>Awaiting initial Phase 1 incident order...</span>
               </div>
             ) : (
@@ -303,7 +303,7 @@ export const SimulationScreen: React.FC = () => {
                       <span className="text-[10px] font-mono text-[#2dd4bf] font-bold">
                         PHASE {item.phaseNumber || idx + 1}
                       </span>
-                      <span className="text-[9px] text-[#64748B]">
+                      <span className="text-[9px] text-[#94A3B8]">
                         {item.choice.recommendedBy}
                       </span>
                     </div>

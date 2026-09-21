@@ -92,7 +92,7 @@ export const HomeScreen: React.FC = () => {
             <span className="text-[11px] font-mono font-bold text-[#2dd4bf] tracking-wider uppercase bg-[#2dd4bf]/10 px-2 py-0.5 rounded border border-[#2dd4bf]/30">
               EXECUTIVE WAR ROOM CONSOLE
             </span>
-            <span className="text-[11px] text-[#64748B]">|</span>
+            <span className="text-[11px] text-[#94A3B8]">|</span>
             <span className="text-[11px] text-[#94A3B8]">Tabletop Crisis Operations & Regulatory Adjudication</span>
           </div>
 
@@ -108,7 +108,7 @@ export const HomeScreen: React.FC = () => {
         {/* Desktop Quick Metrics Ribbon */}
         <div className="grid grid-cols-3 md:grid-cols-3 gap-2.5 shrink-0">
           <div className="bg-[#0f172a] border border-[#1e293b] rounded-xl p-3 min-w-[90px] md:min-w-[110px] text-center">
-            <span className="text-[9px] md:text-[10px] font-bold text-[#64748B] uppercase block">
+            <span className="text-[9px] md:text-[10px] font-bold text-[#94A3B8] uppercase block">
               SCENARIOS
             </span>
             <span className="text-lg md:text-2xl font-black font-mono text-[#2dd4bf] mt-0.5 block">
@@ -118,7 +118,7 @@ export const HomeScreen: React.FC = () => {
           </div>
 
           <div className="bg-[#0f172a] border border-[#1e293b] rounded-xl p-3 min-w-[90px] md:min-w-[110px] text-center">
-            <span className="text-[9px] md:text-[10px] font-bold text-[#64748B] uppercase block">
+            <span className="text-[9px] md:text-[10px] font-bold text-[#94A3B8] uppercase block">
               COMPLETED
             </span>
             <span className="text-lg md:text-2xl font-black font-mono text-[#34d399] mt-0.5 block">
@@ -128,7 +128,7 @@ export const HomeScreen: React.FC = () => {
           </div>
 
           <div className="bg-[#0f172a] border border-[#1e293b] rounded-xl p-3 min-w-[90px] md:min-w-[110px] text-center">
-            <span className="text-[9px] md:text-[10px] font-bold text-[#64748B] uppercase block">
+            <span className="text-[9px] md:text-[10px] font-bold text-[#94A3B8] uppercase block">
               READINESS
             </span>
             <span
@@ -157,14 +157,15 @@ export const HomeScreen: React.FC = () => {
           <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 mb-5 shadow-md">
             {/* Search Input */}
             <div className="relative mb-3">
-              <Search className="w-4 h-4 text-[#64748B] absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[#94A3B8] absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                value={searchQuery}
+                aria-label="Search scenarios"
+              value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 data-testid="search_scenarios_input"
                 placeholder="Search scenarios by title, threat actor (e.g. DarkHydra, Volt Typhoon), codename, or vector..."
-                className="w-full bg-[#020617] border border-[#1e293b] rounded-xl pl-9 pr-3 py-2.5 text-xs text-[#F8FAFC] placeholder-[#64748B] focus:outline-none focus:border-[#2dd4bf]/60 transition-colors"
+                className="w-full bg-[#020617] border border-[#1e293b] rounded-xl pl-9 pr-3 py-2.5 text-xs text-[#F8FAFC] placeholder-[#94A3B8] focus:outline-none focus:border-[#2dd4bf]/60 transition-colors"
               />
             </div>
 
@@ -172,7 +173,7 @@ export const HomeScreen: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1">
               {/* Category Pills */}
               <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 no-scrollbar">
-                <span className="text-[10px] font-bold text-[#64748B] uppercase shrink-0 mr-1 hidden sm:inline">
+                <span className="text-[10px] font-bold text-[#94A3B8] uppercase shrink-0 mr-1 hidden sm:inline">
                   CATEGORY:
                 </span>
                 {categories.map((cat) => (
@@ -193,7 +194,7 @@ export const HomeScreen: React.FC = () => {
 
               {/* Severity Pill / Filter */}
               <div className="flex items-center gap-1.5 shrink-0">
-                <span className="text-[10px] font-bold text-[#64748B] uppercase mr-1">
+                <span className="text-[10px] font-bold text-[#94A3B8] uppercase mr-1">
                   SEVERITY:
                 </span>
                 {['ALL', 'CRITICAL', 'HIGH'].map((sev) => (
@@ -208,7 +209,7 @@ export const HomeScreen: React.FC = () => {
                           : sev === 'HIGH'
                           ? 'bg-[#FB923C] text-black'
                           : 'bg-[#2dd4bf] text-[#042f2e]'
-                        : 'bg-[#020617] text-[#64748B] hover:text-[#94A3B8] border border-[#1e293b]'
+                        : 'bg-[#020617] text-[#94A3B8] hover:text-[#94A3B8] border border-[#1e293b]'
                     }`}
                   >
                     {sev}
@@ -223,7 +224,7 @@ export const HomeScreen: React.FC = () => {
             <span className="text-[11px] font-bold tracking-wider text-[#94A3B8] uppercase">
               TACTICAL SIMULATION DIRECTORY
             </span>
-            <span className="text-[10px] font-mono text-[#64748B]">
+            <span className="text-[10px] font-mono text-[#94A3B8]">
               SHOWING {filteredScenarios.length} OF {allScenarios.length} DRILLS
             </span>
           </div>
@@ -264,9 +265,11 @@ export const HomeScreen: React.FC = () => {
         {/* Right Column: Operations HUD, Advisory & Threat Intel (4 of 12 cols on desktop) */}
         <div className="lg:col-span-4 space-y-5">
           {/* Movahedi Strategic Advisory Banner */}
-          <div
+          <button
+            type="button"
             onClick={() => navigateTo(Screen.ADVISORY)}
-            className="bg-gradient-to-br from-[#0f172a] to-[#0f172a] border border-[#14b8a6]/50 rounded-2xl p-4 cursor-pointer hover:border-[#2dd4bf]/60 transition-all shadow-lg group relative overflow-hidden"
+            aria-label="Explore advisory services"
+            className="w-full text-left bg-gradient-to-br from-[#0f172a] to-[#0f172a] border border-[#14b8a6]/50 rounded-2xl p-4 cursor-pointer hover:border-[#2dd4bf]/60 transition-all shadow-lg group relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#14b8a6]/10 rounded-full blur-2xl pointer-events-none" />
 
@@ -284,7 +287,7 @@ export const HomeScreen: React.FC = () => {
                   </h4>
                 </div>
               </div>
-              <ChevronRight className="w-4 h-4 text-[#64748B] group-hover:text-[#2dd4bf] group-hover:translate-x-1 transition-all mt-1 shrink-0" />
+              <ChevronRight className="w-4 h-4 text-[#94A3B8] group-hover:text-[#2dd4bf] group-hover:translate-x-1 transition-all mt-1 shrink-0" />
             </div>
 
             <p className="text-xs text-[#94A3B8] leading-relaxed mb-3">
@@ -298,7 +301,7 @@ export const HomeScreen: React.FC = () => {
                 Explore Advisory <ChevronRight className="w-3 h-3" />
               </span>
             </div>
-          </div>
+          </button>
 
           {/* Statutory Breach Clocks Reference Card (Crucial for desktop War Room) */}
           <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
@@ -382,16 +385,18 @@ export const HomeScreen: React.FC = () => {
 
               <div className="space-y-2">
                 {pastDrills.slice(0, 3).map((drill) => (
-                  <div
+                  <button
+                    type="button"
                     key={drill.id}
                     onClick={() => navigateTo(Screen.HISTORY_LOGS)}
-                    className="p-2.5 rounded-xl bg-[#020617] border border-[#1e293b] hover:border-[#2dd4bf]/40 cursor-pointer transition-all flex items-center justify-between"
+                    aria-label={`View drill history: ${drill.scenarioTitle}`}
+                    className="w-full text-left p-2.5 rounded-xl bg-[#020617] border border-[#1e293b] hover:border-[#2dd4bf]/40 cursor-pointer transition-all flex items-center justify-between"
                   >
                     <div className="min-w-0 pr-2">
                       <h5 className="text-xs font-bold text-[#F8FAFC] truncate">
                         {drill.scenarioTitle}
                       </h5>
-                      <span className="text-[10px] text-[#64748B]">
+                      <span className="text-[10px] text-[#94A3B8]">
                         {formatDate(drill.completedAt || drill.timestamp || Date.now())}
                       </span>
                     </div>
@@ -404,7 +409,7 @@ export const HomeScreen: React.FC = () => {
                         {drill.letterGrade}
                       </span>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>

@@ -44,9 +44,11 @@ export const DesktopNavBar: React.FC<DesktopNavBarProps> = ({ currentScreen, onN
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Brand & Tactical Call-Sign */}
-        <div
+        <button
+          type="button"
           onClick={() => onNavigate(Screen.HOME)}
-          className="flex items-center gap-3 cursor-pointer group select-none"
+          aria-label="Breach Tabletop home"
+          className="flex items-center gap-3 cursor-pointer group select-none text-left"
         >
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2dd4bf]/20 to-[#14b8a6]/20 border border-[#2dd4bf]/40 flex items-center justify-center text-[#2dd4bf] group-hover:border-[#2dd4bf] transition-all shadow-[0_0_15px_rgba(45,212,191,0.15)]">
             <Shield className="w-5 h-5 group-hover:scale-110 transition-transform" />
@@ -60,13 +62,13 @@ export const DesktopNavBar: React.FC<DesktopNavBarProps> = ({ currentScreen, onN
                 ICS-300
               </span>
             </div>
-            <div className="flex items-center gap-2 text-[11px] text-[#64748B]">
+            <div className="flex items-center gap-2 text-[11px] text-[#94A3B8]">
               <span>Crisis Command Simulator</span>
               <span>•</span>
               <span className="text-[#5eead4]">Statutory Incident Doctrine</span>
             </div>
           </div>
-        </div>
+        </button>
 
         {/* Center Navigation Tabs */}
         <nav className="flex items-center gap-1 bg-[#0f172a]/80 border border-[#1e293b] p-1 rounded-xl">
@@ -168,7 +170,7 @@ export const DesktopNavBar: React.FC<DesktopNavBarProps> = ({ currentScreen, onN
           {/* Org Readiness Score Badge */}
           {avgReadiness !== null && (
             <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0f172a] border border-[#1e293b] text-xs">
-              <span className="text-[10px] text-[#64748B] font-bold">ORG READINESS:</span>
+              <span className="text-[10px] text-[#94A3B8] font-bold">ORG READINESS:</span>
               <span
                 className={`font-mono font-black ${
                   avgReadiness >= 80

@@ -29,12 +29,12 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({ currentScreen, onNav
           onClick={() => onNavigate(Screen.HOME)}
           data-testid="nav_item_war_room"
           className={`flex flex-col items-center justify-center flex-1 py-1 transition-all rounded-lg ${
-            isWarRoom ? 'text-[#2dd4bf]' : 'text-[#64748B] hover:text-[#94A3B8]'
+            isWarRoom ? 'text-[#2dd4bf]' : 'text-[#94A3B8] hover:text-[#94A3B8]'
           }`}
         >
           <div
             className={`p-1 rounded-md transition-all ${
-              isWarRoom ? 'bg-[#2dd4bf]/15 text-[#2dd4bf]' : 'text-[#64748B]'
+              isWarRoom ? 'bg-[#2dd4bf]/15 text-[#2dd4bf]' : 'text-[#94A3B8]'
             }`}
           >
             <Shield className="w-5 h-5" />
@@ -50,12 +50,12 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({ currentScreen, onNav
           onClick={() => onNavigate(Screen.DOCTRINE_LIST)}
           data-testid="nav_item_doctrine"
           className={`flex flex-col items-center justify-center flex-1 py-1 transition-all rounded-lg ${
-            isDoctrine ? 'text-[#2dd4bf]' : 'text-[#64748B] hover:text-[#94A3B8]'
+            isDoctrine ? 'text-[#2dd4bf]' : 'text-[#94A3B8] hover:text-[#94A3B8]'
           }`}
         >
           <div
             className={`p-1 rounded-md transition-all ${
-              isDoctrine ? 'bg-[#2dd4bf]/15 text-[#2dd4bf]' : 'text-[#64748B]'
+              isDoctrine ? 'bg-[#2dd4bf]/15 text-[#2dd4bf]' : 'text-[#94A3B8]'
             }`}
           >
             <BookOpen className="w-5 h-5" />
@@ -71,12 +71,12 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({ currentScreen, onNav
           onClick={() => onNavigate(Screen.ADVISORY)}
           data-testid="nav_item_advisory"
           className={`flex flex-col items-center justify-center flex-1 py-1 transition-all rounded-lg ${
-            isAdvisory ? 'text-[#2dd4bf]' : 'text-[#64748B] hover:text-[#94A3B8]'
+            isAdvisory ? 'text-[#2dd4bf]' : 'text-[#94A3B8] hover:text-[#94A3B8]'
           }`}
         >
           <div
             className={`p-1 rounded-md transition-all ${
-              isAdvisory ? 'bg-[#2dd4bf]/15 text-[#2dd4bf]' : 'text-[#64748B]'
+              isAdvisory ? 'bg-[#2dd4bf]/15 text-[#2dd4bf]' : 'text-[#94A3B8]'
             }`}
           >
             <Lightbulb className="w-5 h-5" />
@@ -92,12 +92,12 @@ export const BottomNavBar: React.FC<BottomNavBarProps> = ({ currentScreen, onNav
           onClick={() => onNavigate(Screen.HISTORY_LOGS)}
           data-testid="nav_item_archives"
           className={`flex flex-col items-center justify-center flex-1 py-1 transition-all rounded-lg ${
-            isArchives ? 'text-[#2dd4bf]' : 'text-[#64748B] hover:text-[#94A3B8]'
+            isArchives ? 'text-[#2dd4bf]' : 'text-[#94A3B8] hover:text-[#94A3B8]'
           }`}
         >
           <div
             className={`p-1 rounded-md transition-all ${
-              isArchives ? 'bg-[#2dd4bf]/15 text-[#2dd4bf]' : 'text-[#64748B]'
+              isArchives ? 'bg-[#2dd4bf]/15 text-[#2dd4bf]' : 'text-[#94A3B8]'
             }`}
           >
             <History className="w-5 h-5" />

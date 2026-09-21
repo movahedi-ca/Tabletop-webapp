@@ -31,7 +31,7 @@ export const DecisionFeedbackDialog: React.FC<DecisionFeedbackDialogProps> = ({
 
         {/* Chosen Order Box */}
         <div className="bg-[#020617] border border-[#1e293b] rounded-lg p-3 mb-3.5">
-          <span className="text-[10px] font-bold text-[#64748B] tracking-wider block mb-0.5">
+          <span className="text-[10px] font-bold text-[#94A3B8] tracking-wider block mb-0.5">
             DECISION:
           </span>
           <p className="text-sm font-semibold text-[#F8FAFC]">{choice.title}</p>
@@ -49,7 +49,7 @@ export const DecisionFeedbackDialog: React.FC<DecisionFeedbackDialogProps> = ({
 
         {/* Evaluated Competency Scores */}
         <div className="mb-5">
-          <span className="text-[10px] font-bold text-[#64748B] uppercase tracking-wide block mb-2">
+          <span className="text-[10px] font-bold text-[#94A3B8] uppercase tracking-wide block mb-2">
             EVALUATED COMPETENCY SCORES
           </span>
           <div className="space-y-1.5 bg-[#020617] p-3 rounded-lg border border-[#1e293b]">

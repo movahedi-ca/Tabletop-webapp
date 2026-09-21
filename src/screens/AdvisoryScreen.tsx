@@ -195,7 +195,7 @@ export const AdvisoryScreen: React.FC = () => {
                     <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#14b8a6]/20 text-[#5eead4] border border-[#14b8a6]/40">
                       {insight.category}
                     </span>
-                    <span className="text-[11px] font-mono text-[#64748B]">{insight.readTime}</span>
+                    <span className="text-[11px] font-mono text-[#94A3B8]">{insight.readTime}</span>
                   </div>
 
                   <h3 className="text-base font-bold text-[#F8FAFC] group-hover:text-[#2dd4bf] transition-colors mb-2 leading-snug">
@@ -320,6 +320,7 @@ export const AdvisoryScreen: React.FC = () => {
                     </span>
                   </div>
                   <input
+                    aria-label="Affected records volume"
                     type="range"
                     min="1"
                     max="1000"
@@ -327,7 +328,7 @@ export const AdvisoryScreen: React.FC = () => {
                     onChange={(e) => setAffectedVolume(Number(e.target.value))}
                     className="w-full h-1.5 bg-[#1e293b] rounded-lg appearance-none cursor-pointer accent-[#2dd4bf]"
                   />
-                  <div className="flex justify-between text-[10px] text-[#64748B] font-mono mt-1">
+                  <div className="flex justify-between text-[10px] text-[#94A3B8] font-mono mt-1">
                     <span>1 record</span>
                     <span>500 records</span>
                     <span>1,000+ records</span>

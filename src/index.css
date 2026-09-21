@@ -1,42 +1,23 @@
 @import "tailwindcss";
 
+/* Self-hosted variable fonts (Inter wght 100-900, Playfair Display wght 400-900, latin subsets). No external font requests. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/tabletop/fonts/Inter-var.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/tabletop/fonts/PlayfairDisplay-var.woff2') format('woff2');
+}
+
 @layer base {
-  :root {
-    /* movahedi.ca design tokens (dark default) */
-    --tt-background: #020617; /* navy-950 */
-    --tt-card: #0f172a; /* navy-900 */
-    --tt-elevated: #111827;
-    --tt-border: #1e293b; /* slate-800 */
-    --tt-primary: #14b8a6; /* teal-500 */
-    --tt-primary-bright: #2dd4bf; /* teal-400 */
-    --tt-primary-soft: #5eead4; /* teal-300 */
-    --tt-primary-deep: #042f2e; /* teal-950 */
-    --tt-danger: #f87171;
-    --tt-warning: #fbbf24;
-    --tt-success: #34d399;
-    --tt-text-primary: #f8fafc;
-    --tt-text-secondary: #94a3b8;
-    --tt-text-muted: #64748b;
-
-    /* legacy aliases kept for any missed references */
-    --slate-dark: #020617;
-    --slate-card: #0f172a;
-    --slate-border: #1e293b;
-    --slate-elevated: #111827;
-    --cyber-cyan: #2dd4bf;
-    --cyber-blue: #5eead4;
-    --cyber-indigo: #14b8a6;
-    --alert-red: #f87171;
-    --warning-amber: #fbbf24;
-    --contained-green: #34d399;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-  }
-
   body {
-    background-color: #020617;
-    color: #f8fafc;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
@@ -68,4 +49,21 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #14b8a6;
+}
+
+/* Respect users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible keyboard focus for all interactive elements. */
+:focus-visible {
+  outline: 2px solid #2dd4bf;
+  outline-offset: 2px;
+  border-radius: 4px;
 }

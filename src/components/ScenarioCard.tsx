@@ -33,10 +33,12 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
   const regulatory = scenario.regulatoryScope || scenario.applicableDoctrines || [];
 
   return (
-    <div
+    <button
+      type="button"
       data-testid={`scenario_card_${scenario.id}`}
       onClick={onSelect}
-      className="w-full bg-[#0f172a] hover:bg-[#0f172a] border border-[#1e293b] hover:border-[#2dd4bf]/50 rounded-xl p-5 transition-all duration-200 cursor-pointer shadow-md flex flex-col justify-between group hover:shadow-[0_4px_20px_rgba(45,212,191,0.08)]"
+      aria-label={`Open scenario: ${scenario.title}`}
+      className="w-full bg-[#0f172a] hover:bg-[#0f172a] border border-[#1e293b] hover:border-[#2dd4bf]/50 rounded-xl p-5 transition-all duration-200 cursor-pointer shadow-md flex flex-col justify-between group hover:shadow-[0_4px_20px_rgba(45,212,191,0.08)] text-left"
     >
       <div>
         {/* Top Badges */}
@@ -70,7 +72,7 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
             {systems.slice(0, 2).map((sys) => (
               <span
                 key={sys}
-                className="text-[9px] font-mono text-[#64748B] bg-[#020617] px-1.5 py-0.5 rounded border border-[#1e293b]"
+                className="text-[9px] font-mono text-[#94A3B8] bg-[#020617] px-1.5 py-0.5 rounded border border-[#1e293b]"
               >
                 {sys}
               </span>
@@ -89,7 +91,7 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
 
       <div>
         {/* Metadata Strip */}
-        <div className="flex items-center justify-between py-2.5 border-t border-[#1e293b]/80 text-[11px] text-[#64748B] mb-3">
+        <div className="flex items-center justify-between py-2.5 border-t border-[#1e293b]/80 text-[11px] text-[#94A3B8] mb-3">
           <div className="flex items-center gap-1">
             <Layers className="w-3.5 h-3.5 text-[#94A3B8]" />
             <span>{scenario.phases.length} Phases</span>
@@ -119,6 +121,6 @@ export const ScenarioCard: React.FC<ScenarioCardProps> = ({ scenario, onSelect }
           </div>
         </div>
       </div>
-    </div>
+    </button>
   );
 };

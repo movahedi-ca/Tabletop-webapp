@@ -158,7 +158,7 @@ export const AarReportScreen: React.FC = () => {
       {/* Outcome Telemetry Ribbon (4 KPI Cards) */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
         <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
-          <div className="flex items-center gap-1.5 text-[#64748B] text-[10px] font-bold uppercase mb-1">
+          <div className="flex items-center gap-1.5 text-[#94A3B8] text-[10px] font-bold uppercase mb-1">
             <DollarSign className="w-4 h-4 text-[#fbbf24]" />
             <span>FINAL COST EXPOSURE</span>
           </div>
@@ -169,7 +169,7 @@ export const AarReportScreen: React.FC = () => {
         </div>
 
         <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
-          <div className="flex items-center gap-1.5 text-[#64748B] text-[10px] font-bold uppercase mb-1">
+          <div className="flex items-center gap-1.5 text-[#94A3B8] text-[10px] font-bold uppercase mb-1">
             <Clock className="w-4 h-4 text-[#5eead4]" />
             <span>CONTAINMENT WINDOW</span>
           </div>
@@ -180,7 +180,7 @@ export const AarReportScreen: React.FC = () => {
         </div>
 
         <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
-          <div className="flex items-center gap-1.5 text-[#64748B] text-[10px] font-bold uppercase mb-1">
+          <div className="flex items-center gap-1.5 text-[#94A3B8] text-[10px] font-bold uppercase mb-1">
             <Shield className="w-4 h-4 text-[#34d399]" />
             <span>RETAINED PUBLIC TRUST</span>
           </div>
@@ -191,7 +191,7 @@ export const AarReportScreen: React.FC = () => {
         </div>
 
         <div className="bg-[#0f172a] border border-[#1e293b] rounded-2xl p-4 shadow-md">
-          <div className="flex items-center gap-1.5 text-[#64748B] text-[10px] font-bold uppercase mb-1">
+          <div className="flex items-center gap-1.5 text-[#94A3B8] text-[10px] font-bold uppercase mb-1">
             <Gavel className="w-4 h-4 text-[#f87171]" />
             <span>DEFENSIBLE LEGAL RISK</span>
           </div>
@@ -224,14 +224,14 @@ export const AarReportScreen: React.FC = () => {
 
               {/* Readiness Index */}
               <div className="flex-1" data-testid="aar_readiness_score">
-                <span className="text-[10px] font-bold text-[#64748B] tracking-wider uppercase block mb-0.5">
+                <span className="text-[10px] font-bold text-[#94A3B8] tracking-wider uppercase block mb-0.5">
                   OVERALL READINESS INDEX
                 </span>
                 <div className="flex items-baseline gap-1">
                   <span className={`text-4xl md:text-5xl font-mono font-black ${getScoreColor(overallScore)}`}>
                     {overallScore}
                   </span>
-                  <span className="text-sm text-[#64748B] font-mono">/ 100</span>
+                  <span className="text-sm text-[#94A3B8] font-mono">/ 100</span>
                 </div>
                 <p className="text-xs text-[#CBD5E1] mt-1 font-medium">
                   {overallScore >= 85
@@ -250,7 +250,7 @@ export const AarReportScreen: React.FC = () => {
               <span className="text-xs font-black tracking-widest text-[#2dd4bf] uppercase">
                 INCIDENT COMMAND COMPETENCY AUDIT
               </span>
-              <span className="text-[10px] text-[#64748B] font-mono">BENCHMARK: ICS-300</span>
+              <span className="text-[10px] text-[#94A3B8] font-mono">BENCHMARK: ICS-300</span>
             </div>
 
             <div className="space-y-3.5">
@@ -346,7 +346,7 @@ export const AarReportScreen: React.FC = () => {
               <span className="text-xs font-black tracking-widest text-[#2dd4bf] uppercase">
                 TACTICAL ORDERS CHRONICLE
               </span>
-              <span className="text-[10px] font-mono text-[#64748B]">
+              <span className="text-[10px] font-mono text-[#94A3B8]">
                 {(afterActionReport.decisions || afterActionReport.decisionsTimeline || []).length} PHASES
               </span>
             </div>
@@ -361,7 +361,7 @@ export const AarReportScreen: React.FC = () => {
                     <span className="text-[10px] font-mono font-bold text-[#2dd4bf] bg-[#2dd4bf]/10 px-2 py-0.5 rounded border border-[#2dd4bf]/30 uppercase">
                       PHASE {item.phaseNumber} • {item.phaseTitle}
                     </span>
-                    <span className="text-[10px] text-[#64748B]">
+                    <span className="text-[10px] text-[#94A3B8]">
                       {item.choice.recommendedBy}
                     </span>
                   </div>
@@ -372,7 +372,7 @@ export const AarReportScreen: React.FC = () => {
                     {item.choice.feedbackDoctrine}
                   </p>
 
-                  <div className="flex items-center justify-between text-[11px] text-[#64748B] pt-1">
+                  <div className="flex items-center justify-between text-[11px] text-[#94A3B8] pt-1">
                     <div className="flex items-center gap-3 font-mono">
                       <span className="text-[#fbbf24]">+{formatCurrency(item.choice.costDeltaUsd)}</span>
                       <span>+{item.choice.timeDeltaHours}h window</span>

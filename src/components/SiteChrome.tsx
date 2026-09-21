@@ -21,7 +21,7 @@ export const SiteHeader: React.FC = () => {
           <span className="text-xs font-semibold tracking-tight text-[#f8fafc] group-hover:text-[#2dd4bf] transition-colors">
             Movahedi
           </span>
-          <span className="hidden sm:inline text-[10px] font-medium text-[#64748b]">
+          <span className="hidden sm:inline text-[10px] font-medium text-[#94a3b8]">
             Privacy · AI Governance
           </span>
         </a>
@@ -56,7 +56,7 @@ export const SiteFooter: React.FC = () => {
           <span className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-[#2dd4bf] to-[#14b8a6] text-[10px] font-bold text-[#042f2e]">
             MM
           </span>
-          <p className="text-[11px] text-[#64748b] m-0">
+          <p className="text-[11px] text-[#94a3b8] m-0">
             Breach Tabletop is a free tool by <a href="/" className="text-[#2dd4bf] hover:text-[#5eead4] no-underline">movahedi.ca</a> · Mohammad Movahedi
           </p>
         </div>

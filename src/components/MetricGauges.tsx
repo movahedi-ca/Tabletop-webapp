@@ -69,7 +69,7 @@ export const MetricBox: React.FC<{
     <div className="bg-[#020617] border border-[#1e293b] rounded-lg p-2.5 flex flex-col justify-between">
       <div className="flex items-center gap-1">
         {icon}
-        <span className="text-[10px] font-semibold text-[#64748B]">{title}</span>
+        <span className="text-[10px] font-semibold text-[#94A3B8]">{title}</span>
       </div>
       <span className={`text-[15px] font-mono font-bold mt-1 ${accentColor}`}>{value}</span>
     </div>
@@ -97,7 +97,7 @@ export const TrustMetricBox: React.FC<{ trustPercent: number }> = ({ trustPercen
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-1">
           <Shield className={`w-3.5 h-3.5 ${colorClass}`} />
-          <span className="text-[10px] font-semibold text-[#64748B]">PUBLIC TRUST</span>
+          <span className="text-[10px] font-semibold text-[#94A3B8]">PUBLIC TRUST</span>
         </div>
         <span className={`text-[11px] font-mono font-bold ${colorClass}`}>{trustPercent}%</span>
       </div>
@@ -152,7 +152,7 @@ export const StatusPill: React.FC<{
     <div className={`bg-[#020617] border rounded-lg px-2.5 py-1.5 flex items-center gap-2 ${colorStyle}`}>
       <span className={badgeColor}>{icon}</span>
       <div className="flex flex-col min-w-0">
-        <span className="text-[8px] font-bold text-[#64748B] uppercase">{label}</span>
+        <span className="text-[8px] font-bold text-[#94A3B8] uppercase">{label}</span>
         <span className={`text-[10px] font-bold truncate ${badgeColor}`}>{value}</span>
       </div>
     </div>
