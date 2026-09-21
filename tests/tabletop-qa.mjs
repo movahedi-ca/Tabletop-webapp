@@ -89,7 +89,7 @@ check('Q38 report route handled', ctx.includes('/report'));
 check('Q39 doctrine route parsed', ctx.includes("head === 'doctrine'"));
 check('Q40 history route parsed', ctx.includes("head === 'history'"));
 check('Q41 advisory route parsed', ctx.includes("head === 'advisory'"));
-check('Q42 hashchange listener registered', ctx.includes('hashchange'));
+check('Q42 hashchange listener registered with value-based suppression', ctx.includes('hashchange') && ctx.includes('committedHashRef'));
 check('Q43 drill/report deep links fall back to scenario briefing', /drill|report/.test(ctx) && ctx.includes('SCENARIO_DETAIL'));
 check('Q44 doctrine deep link selects the requested playbook', ctx.includes('setSelectedDoctrine') && ctx.includes("head === 'doctrine'"));
 

@@ -135,24 +135,36 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   // Drill/report hashes land on the scenario briefing on a fresh load, since
   // live simulation state cannot be reconstructed from a URL.
   //
-  // In-app transitions set the hash themselves (via commitHash below) and mark
-  // it as handled, so the hashchange listener does not re-interpret a
-  // '/drill' or '/report' suffix as a plain scenario briefing and clobber the
-  // screen the app just navigated to.
-  const suppressHashRef = useRef(false);
+  // In-app transitions write the hash themselves (via commitHash) and record
+  // it in committedHashRef, so the hashchange listener skips URLs the app
+  // just wrote instead of re-interpreting a '/drill' or '/report' suffix as
+  // a plain scenario briefing and clobbering the screen it just navigated
+  // to. A boolean flag was not enough: a hashchange queued from an earlier
+  // navigation could consume it before the drill hashchange arrived.
+  // Value-based suppression: remember the exact hash the app's last in-app
+  // navigation wrote. A queued hashchange left over from an earlier
+  // navigation (e.g. the scenario briefing) must not consume the
+  // suppression before the drill hashchange arrives; comparing the current
+  // hash against the committed value is order-proof where a boolean flag
+  // is not. Back/forward navigation changes the hash to something the app
+  // did not just write, so it is still parsed normally below.
+  const committedHashRef = useRef<string | null>(null);
   const commitHash = useCallback((screen: Screen, scenarioId?: string | null, doctrineId?: string | null): void => {
     if (typeof window === 'undefined') return;
     const target = hashFor(screen, scenarioId, doctrineId);
     if (window.location.hash !== target) {
-      suppressHashRef.current = true;
+      committedHashRef.current = target;
       window.location.hash = target;
     }
   }, []);
 
   useEffect(() => {
     const applyHash = () => {
-      if (suppressHashRef.current) {
-        suppressHashRef.current = false;
+      // Skip hashchanges for URLs the app itself just wrote via commitHash.
+      // Drill/report hashes reached via back/forward (or fresh load) still
+      // land on the scenario briefing, since live simulation state cannot
+      // be reconstructed from a URL.
+      if (committedHashRef.current !== null && window.location.hash === committedHashRef.current) {
         return;
       }
       const raw = window.location.hash.replace(/^#\/?/, '');
