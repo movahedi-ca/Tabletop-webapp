@@ -73,6 +73,28 @@ const hashFor = (screen: Screen, scenarioId?: string | null, doctrineId?: string
   }
 };
 
+const titleFor = (screen: Screen, scenarioTitle?: string | null, doctrineTitle?: string | null): string => {
+  switch (screen) {
+    case Screen.SCENARIO_DETAIL:
+      return scenarioTitle ? `${scenarioTitle} | Breach Tabletop` : 'Breach Tabletop | Movahedi';
+    case Screen.SIMULATION:
+      return scenarioTitle ? `Drill: ${scenarioTitle} | Breach Tabletop` : 'Breach Tabletop | Movahedi';
+    case Screen.AAR_REPORT:
+      return 'After-Action Report | Breach Tabletop';
+    case Screen.DOCTRINE_LIST:
+      return 'Doctrine Library | Breach Tabletop';
+    case Screen.DOCTRINE_DETAIL:
+      return doctrineTitle ? `${doctrineTitle} | Breach Tabletop` : 'Breach Tabletop | Movahedi';
+    case Screen.HISTORY_LOGS:
+      return 'Drill History | Breach Tabletop';
+    case Screen.ADVISORY:
+      return 'Advisory | Breach Tabletop';
+    case Screen.HOME:
+    default:
+      return 'Breach Tabletop | Movahedi';
+  }
+};
+
 const writeHash = (screen: Screen, scenarioId?: string | null, doctrineId?: string | null): void => {
   if (typeof window === 'undefined') return;
   const target = hashFor(screen, scenarioId, doctrineId);
@@ -157,6 +179,16 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     window.addEventListener('hashchange', applyHash);
     return () => window.removeEventListener('hashchange', applyHash);
   }, []);
+
+  // Keep the document title in sync with the current view so tabs and
+  // bookmarks describe the actual page, not just the app shell.
+  useEffect(() => {
+    document.title = titleFor(
+      currentScreen,
+      selectedScenario?.title,
+      selectedDoctrine?.title,
+    );
+  }, [currentScreen, selectedScenario, selectedDoctrine]);
 
   const navigateTo = useCallback((screen: Screen) => {
     setCurrentScreen(screen);

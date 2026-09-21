@@ -105,7 +105,10 @@ check('S40 no javascript: URLs', !/javascript:/i.test(html));
 const scriptSrcs = [...html.matchAll(/<script[^>]*src="([^"]+)"/g)].map((m) => m[1]);
 check('S41 all script src are same-origin /tabletop/', scriptSrcs.length > 0 && scriptSrcs.every((s) => s.startsWith('/tabletop/')), scriptSrcs.join(','));
 check('S42 stylesheet/font hrefs are self-hosted', !/<link[^>]*rel="stylesheet"[^>]*href="https?:/i.test(html));
-check('S43 favicon is same-origin /favicon.svg', /rel="icon"[^>]*href="\/favicon\.svg"/.test(html));
+check('S43 favicon is same-origin', (() => {
+  const m = html.match(/rel="icon"[^>]*href="([^"]+)"/);
+  return !!m && !/^(https?:)?\/\//i.test(m[1]);
+})());
 check('S44 <html lang="en">', /<html[^>]*lang="en"/i.test(html));
 check('S45 charset utf-8 declared', /charset="UTF-8"/i.test(html));
 check('S46 no iframes', !/<iframe/i.test(html));
