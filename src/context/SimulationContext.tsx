@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import {
   Screen,
   IncidentScenario,
@@ -95,14 +95,6 @@ const titleFor = (screen: Screen, scenarioTitle?: string | null, doctrineTitle?:
   }
 };
 
-const writeHash = (screen: Screen, scenarioId?: string | null, doctrineId?: string | null): void => {
-  if (typeof window === 'undefined') return;
-  const target = hashFor(screen, scenarioId, doctrineId);
-  if (window.location.hash !== target) {
-    window.location.hash = target;
-  }
-};
-
 const defaultLiveMetrics: LiveMetrics = {
   financialCostUsd: 0,
   timeElapsedHours: 0,
@@ -142,8 +134,27 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   // Deep-link support: parse the hash on load and on back/forward navigation.
   // Drill/report hashes land on the scenario briefing on a fresh load, since
   // live simulation state cannot be reconstructed from a URL.
+  //
+  // In-app transitions set the hash themselves (via commitHash below) and mark
+  // it as handled, so the hashchange listener does not re-interpret a
+  // '/drill' or '/report' suffix as a plain scenario briefing and clobber the
+  // screen the app just navigated to.
+  const suppressHashRef = useRef(false);
+  const commitHash = useCallback((screen: Screen, scenarioId?: string | null, doctrineId?: string | null): void => {
+    if (typeof window === 'undefined') return;
+    const target = hashFor(screen, scenarioId, doctrineId);
+    if (window.location.hash !== target) {
+      suppressHashRef.current = true;
+      window.location.hash = target;
+    }
+  }, []);
+
   useEffect(() => {
     const applyHash = () => {
+      if (suppressHashRef.current) {
+        suppressHashRef.current = false;
+        return;
+      }
       const raw = window.location.hash.replace(/^#\/?/, '');
       if (!raw) return;
       const parts = raw.split('/').filter(Boolean);
@@ -192,13 +203,13 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   const navigateTo = useCallback((screen: Screen) => {
     setCurrentScreen(screen);
-    writeHash(screen);
+    commitHash(screen);
   }, []);
 
   const selectScenario = useCallback((scenario: IncidentScenario) => {
     setSelectedScenario(scenario);
     setCurrentScreen(Screen.SCENARIO_DETAIL);
-    writeHash(Screen.SCENARIO_DETAIL, scenario.id);
+    commitHash(Screen.SCENARIO_DETAIL, scenario.id);
   }, []);
 
   const startSimulation = useCallback((scenarioToStart?: IncidentScenario) => {
@@ -218,7 +229,7 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     setActiveDecisionFeedback(null);
     setAfterActionReport(null);
     setCurrentScreen(Screen.SIMULATION);
-    writeHash(Screen.SIMULATION, target.id);
+    commitHash(Screen.SIMULATION, target.id);
   }, [selectedScenario]);
 
   const returnToHome = useCallback(() => {
@@ -226,7 +237,7 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     setSelectedScenario(null);
     setActiveDecisionFeedback(null);
     setDecisionsHistory([]);
-    writeHash(Screen.HOME);
+    commitHash(Screen.HOME);
   }, []);
 
   const abortSimulation = useCallback(() => {
@@ -427,7 +438,7 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
       setAfterActionReport(report);
       setCurrentScreen(Screen.AAR_REPORT);
-      writeHash(Screen.AAR_REPORT, scenario.id);
+      commitHash(Screen.AAR_REPORT, scenario.id);
 
       // Save drill record
       const record: SimulationRecord = {
@@ -470,7 +481,7 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const selectDoctrine = useCallback((playbook: DoctrinePlaybook) => {
     setSelectedDoctrine(playbook);
     setCurrentScreen(Screen.DOCTRINE_DETAIL);
-    writeHash(Screen.DOCTRINE_DETAIL, null, playbook.id);
+    commitHash(Screen.DOCTRINE_DETAIL, null, playbook.id);
   }, []);
 
   const deletePastDrill = useCallback((id: number) => {

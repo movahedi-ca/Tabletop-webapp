@@ -172,7 +172,7 @@ export const HomeScreen: React.FC = () => {
             {/* Filter Pills */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1">
               {/* Category Pills */}
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 no-scrollbar">
+              <div className="flex flex-wrap items-center gap-1.5">
                 <span className="text-[10px] font-bold text-[#94A3B8] uppercase shrink-0 mr-1 hidden sm:inline">
                   CATEGORY:
                 </span>
