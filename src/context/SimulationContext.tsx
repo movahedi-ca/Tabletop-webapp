@@ -408,7 +408,7 @@ export const SimulationProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       } else if (finalScore >= 70) {
         summary = `Competent operational containment achieved for ${scenario.codename}. Technical systems were stabilized, though minor compromises in evidence preservation and secondary delays in regulatory notification elevated organizational exposure.`;
       } else if (finalScore >= 50) {
-        summary = `Marginal response during ${scenario.codename}. While systems were eventually recovered, critical doctrine violations—including premature host rebooting or notification delays—incurred elevated regulatory fines and substantial public trust erosion.`;
+        summary = `Marginal response during ${scenario.codename}. While systems were eventually recovered, critical doctrine violations–including premature host rebooting or notification delays–incurred elevated regulatory fines and substantial public trust erosion.`;
       } else {
         summary = `Catastrophic operational and legal failure during ${scenario.codename}. Tainted forensic chain-of-custody, regulatory breach reporting defaults, and uncontrolled data exposure resulted in maximum statutory liability. Immediate tabletop drill repetition mandated.`;
       }

@@ -355,7 +355,7 @@ export const HomeScreen: React.FC = () => {
               <div className="p-2.5 rounded-xl bg-[#020617] border border-[#1e293b] flex items-center justify-between">
                 <div>
                   <span className="text-xs font-bold text-[#F8FAFC] block">PIPEDA (OPC Canada)</span>
-                  <span className="text-[10px] text-[#94A3B8]">Federal Canadian Privacy Act</span>
+                  <span className="text-[10px] text-[#94A3B8]">Personal Information Protection and Electronic Documents Act</span>
                 </div>
                 <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-[#2dd4bf]/15 border border-[#2dd4bf]/30 text-[#2dd4bf]">
                   As Soon As Feasible

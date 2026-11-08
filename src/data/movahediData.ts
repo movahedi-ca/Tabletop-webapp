@@ -2,7 +2,7 @@ import { MovahediService, MovahediInsight } from '../types';
 
 export const MOVAHEDI_CONFIG = {
   CONSULTANT_NAME: 'Mohammad Movahedi',
-  CREDENTIALS: 'CIPP/C • Six Sigma Black Belt',
+  CREDENTIALS: 'CIPP/C • Lean Six Sigma (LinkedIn Learning)',
   CURRENT_ROLE: 'Data Protection & Security Specialist',
   SPECIALIZATION: 'Privacy & AI Governance Consultant',
   LOCATION: 'Toronto, Canada',
@@ -44,8 +44,8 @@ export const MOVAHEDI_SERVICES: MovahediService[] = [
     title: 'Process Excellence for Security & GRC',
     subtitle: 'Lean Six Sigma Applied to Cyber Operations',
     description:
-      'Applying Six Sigma Black Belt methodologies to eliminate operational waste, accelerate Mean Time to Detect (MTTD) and Mean Time to Respond (MTTR), and build defensible compliance records.',
-    tags: ['Six Sigma Black Belt', 'MTTR Reduction', 'GRC Optimization', 'Root Cause Analysis'],
+      'Applying Lean Six Sigma methods to eliminate operational waste, accelerate Mean Time to Detect (MTTD) and Mean Time to Respond (MTTR), and build defensible compliance records.',
+    tags: ['Lean Six Sigma coursework', 'MTTR Reduction', 'GRC Optimization', 'Root Cause Analysis'],
     url: 'https://movahedi.ca',
   },
   {

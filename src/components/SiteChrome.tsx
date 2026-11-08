@@ -13,7 +13,7 @@ export const SiteHeader: React.FC = () => {
         <a
           href="/"
           className="flex items-center gap-2 no-underline group"
-          aria-label="movahedi.ca — Home"
+          aria-label="movahedi.ca – Home"
         >
           <span className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-[#2dd4bf] to-[#14b8a6] text-[10px] font-bold text-[#042f2e]">
             MM
