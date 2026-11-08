@@ -61,7 +61,7 @@ export const AdvisoryScreen: React.FC = () => {
               </span>
 
               <p className="text-xs md:text-sm text-[#94A3B8] mt-2 max-w-2xl leading-relaxed">
-                Building trustworthy data ecosystems — where regulatory compliance is crystal clear, AI risk is defensibly governed, and executive tabletop readiness is proven.
+                Building trustworthy data ecosystems – where regulatory compliance is crystal clear, AI risk is defensibly governed, and executive tabletop readiness is proven.
               </p>
             </div>
           </div>
